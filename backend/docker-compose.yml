@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  server:
+    container_name: meetapp_server_nodejs
+    restart: always
+    build: '.'
+    volumes:
+      - ./:/node-app
+      - ./node_modules:/node-app/node_modules
+    depends_on:
+      - postgresqldb
+    links:
+      - postgresqldb
+    ports:
+      - '3333:3333'
+
+  postgresqldb:
+    image: postgres:12.0-alpine
+    container_name: meetapp_db_postgresql
+    restart: always
+    environment:
+      POSTGRES_DB: meetapp
+      POSTGRES_USER: meetapp
+      POSTGRES_PASSWORD: meetapp
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./.docker/pg-data:/var/lib/postgresql/data
