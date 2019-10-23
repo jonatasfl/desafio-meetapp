@@ -26,4 +26,7 @@ services:
     ports:
       - '5432:5432'
     volumes:
-      - ./.docker/pg-data:/var/lib/postgresql/data
+      - pg-meetapp:/var/lib/postgresql/data
+
+volumes:
+  pg-meetapp:
