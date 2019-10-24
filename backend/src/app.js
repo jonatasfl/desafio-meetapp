@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
-import logger from 'morgan';
+// import logger from 'morgan';
 // import { resolve } from 'path';
 
 import routes from './routes';
@@ -17,7 +17,7 @@ class App {
   }
 
   middlewares() {
-    this.express.use(logger('dev'));
+    // this.express.use(logger('dev'));
     this.express.use(express.json());
     this.express.use(cors());
   }
