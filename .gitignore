@@ -3,3 +3,6 @@ node_modules/
 .docker/
 
 .env
+
+backend/tmp/uploads
+!backend/tmp/uploads/.gitkeep

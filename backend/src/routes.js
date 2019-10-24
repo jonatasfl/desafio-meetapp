@@ -1,7 +1,12 @@
 import { Router } from 'express';
+import multer from 'multer';
+
+import multerConfig from './config/multer';
 
 import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
+import MeetupController from './app/controllers/MeetupController';
+import FileController from './app/controllers/FileController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -10,6 +15,7 @@ import validadeUserUpdate from './app/validators/UserUpdate';
 import validadeSessionStore from './app/validators/SessionStore';
 
 const routes = Router();
+const upload = multer(multerConfig);
 
 routes.get('/', (req, res) => {
   res.send('API MeetApp');
@@ -23,5 +29,17 @@ routes.get('/users', UserController.index);
 routes.post('/users', validadeUserStore, UserController.store);
 routes.put('/users', authMiddleware, validadeUserUpdate, UserController.update);
 routes.delete('/users/:id', authMiddleware, UserController.destroy);
+
+// Meetups
+routes.get('/meetups', authMiddleware, MeetupController.index);
+routes.post('/meetups', authMiddleware, MeetupController.store);
+
+// Files
+routes.post(
+  '/files',
+  authMiddleware,
+  upload.single('image'),
+  FileController.store
+);
 
 export default routes;
