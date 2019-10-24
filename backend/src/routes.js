@@ -14,6 +14,7 @@ import authMiddleware from './app/middlewares/auth';
 import validadeUserStore from './app/validators/UserStore';
 import validadeUserUpdate from './app/validators/UserUpdate';
 import validadeSessionStore from './app/validators/SessionStore';
+import validadeMeetupStore from './app/validators/MeetupStore';
 
 const routes = Router();
 const upload = multer(multerConfig);
@@ -33,7 +34,12 @@ routes.delete('/users/:id', authMiddleware, UserController.destroy);
 
 // Meetups
 routes.get('/meetups', authMiddleware, MeetupController.index);
-routes.post('/meetups', authMiddleware, MeetupController.store);
+routes.post(
+  '/meetups',
+  authMiddleware,
+  validadeMeetupStore,
+  MeetupController.store
+);
 
 // Meetup Enrollments
 routes.get('/meetups/enrollments', authMiddleware, EnrollmentController.index);
