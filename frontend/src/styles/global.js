@@ -14,6 +14,7 @@ export default createGlobalStyle`
 
   body {
     font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
     -webkit-font-smoothing: antialiased !important;
     background: linear-gradient(180deg, #22202c 0%, #402845 100%)
   }
@@ -24,6 +25,7 @@ export default createGlobalStyle`
 
   main {
     margin: 50px 250px;
+    max-width: 940px;
     min-height: 500px;
   }
 `;
