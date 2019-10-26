@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 
 import Button from '~/components/Button';
 import { MainHeader, Container, UserInfo } from './styles';
+import logo from '~/assets/img/logo.svg';
 
 export default function Header() {
   return (
     <MainHeader>
       <Container>
-        <h1 style={{ color: 'red' }}>M</h1>
+        <img src={logo} alt="MeetApp logo" />
         <div className="user-data">
           <UserInfo>
             <span>Jonatas Lizandro</span>

@@ -6,19 +6,20 @@ import Button from '~/components/Button';
 import { Container, Box } from './styles';
 import logo from '~/assets/img/logo.svg';
 
-export default function Signin() {
+export default function Signup() {
   return (
     <Container>
       <Box>
         <span>
           <img src={logo} alt="MeetApp logo" />
         </span>
+        <Input placeholder="Nome completo" />
         <Input placeholder="Digite seu e-mail" />
         <Input type="password" placeholder="Sua senha secreta" />
         <Button type="submit" block>
-          Entrar
+          Criar conta
         </Button>
-        <Link to="/signup">Criar conta grátis</Link>
+        <Link to="/signin">Já tenho conta</Link>
       </Box>
     </Container>
   );

@@ -19,6 +19,14 @@ export default createGlobalStyle`
     background: linear-gradient(180deg, #22202c 0%, #402845 100%)
   }
 
+  a {
+    color: rgba(255, 255, 255, 0.6);
+
+    &:hover {
+      color: rgba(255, 255, 255, 0.4);
+    }
+  }
+
   button {
     cursor: pointer;
   }

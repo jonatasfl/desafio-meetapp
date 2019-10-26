@@ -9,7 +9,7 @@ export default styled.button`
   font-weight: bold;
   width: ${props => props.block && '100%'};
   height: 42px;
-  padding: 12px 20px;
+  padding: 0 20px;
   background: #d44059;
   color: #fff;
   border: 0px;

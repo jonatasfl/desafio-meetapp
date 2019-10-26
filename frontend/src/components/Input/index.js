@@ -10,4 +10,5 @@ export default styled.input`
   padding-left: 20px;
   padding-right: 20px;
   margin-bottom: 10px;
+  border-radius: 4px;
 `;

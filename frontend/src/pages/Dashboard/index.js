@@ -1,5 +1,7 @@
 import React from 'react';
+import { parseISO, format } from 'date-fns';
 import { MdKeyboardArrowRight, MdAddCircleOutline } from 'react-icons/md';
+import ptBR from 'date-fns/locale/pt-BR';
 
 import Button from '~/components/Button';
 import { Container, Header, List, ListItem } from './styles';
@@ -8,17 +10,17 @@ const data = [
   {
     id: 1,
     title: 'Meetup de React Native',
-    date: '25 de outubro, às 20h',
+    date: '2010-10-25 20:00',
   },
   {
     id: 2,
     title: 'NodeJS Meetup',
-    date: '25 de outubro, às 20h',
+    date: '2010-10-25 20:00',
   },
   {
     id: 3,
     title: 'Rocketseat Meetup',
-    date: '25 de outubro, às 20h',
+    date: '2010-10-25 20:00',
   },
 ];
 
@@ -38,7 +40,9 @@ export default function Dashboard() {
           <ListItem key={item.id}>
             <h3>{item.title}</h3>
             <div>
-              {item.date}
+              {format(parseISO(item.date), "dd 'de' MMMM', às' HH'h'", {
+                locale: ptBR,
+              })}
               <span>
                 <MdKeyboardArrowRight size="25px" color="#fff" />
               </span>
