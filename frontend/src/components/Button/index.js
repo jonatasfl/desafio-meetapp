@@ -4,7 +4,10 @@ import { darken } from 'polished';
 export default styled.button`
   display: flex;
   align-items: center;
+  justify-content: center;
+  font-size: ${props => (props.block ? '18px' : '16px')};
   font-weight: bold;
+  width: ${props => props.block && '100%'};
   height: 42px;
   padding: 12px 20px;
   background: #d44059;

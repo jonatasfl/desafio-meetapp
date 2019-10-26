@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Button from '~/components/Button';
 import { MainHeader, Container, UserInfo } from './styles';
@@ -11,7 +12,7 @@ export default function Header() {
         <div className="user-data">
           <UserInfo>
             <span>Jonatas Lizandro</span>
-            <small>Meu perfil</small>
+            <Link to="/profile">Meu perfil</Link>
           </UserInfo>
           <Button type="button">Sair</Button>
         </div>

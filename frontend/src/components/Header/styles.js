@@ -33,8 +33,9 @@ export const UserInfo = styled.div`
     font-weight: bold;
   }
 
-  small {
+  a {
     color: #999;
     font-size: 14px;
+    text-decoration: none;
   }
 `;
