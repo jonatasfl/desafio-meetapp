@@ -9,7 +9,10 @@ export default function Header() {
   return (
     <MainHeader>
       <Container>
-        <img src={logo} alt="MeetApp logo" />
+        <Link to="/">
+          <img src={logo} alt="MeetApp logo" />
+        </Link>
+
         <div className="user-data">
           <UserInfo>
             <span>Jonatas Lizandro</span>

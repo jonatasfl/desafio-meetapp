@@ -5,7 +5,8 @@ export const Container = styled.div`
 
   hr {
     border: 1px solid rgba(255, 255, 255, 0.1);
-    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 
   div {

@@ -6,6 +6,7 @@ import MainLayout from '~/MainLayout';
 
 import Dashboard from '~/pages/Dashboard';
 import Profile from '~/pages/Profile';
+import New from '~/pages/New';
 import Signin from '~/pages/Signin';
 import Signup from '~/pages/Signup';
 
@@ -14,6 +15,7 @@ export default function Routes() {
     <Switch>
       <AppRoute path="/" exact component={Dashboard} />
       <AppRoute path="/profile" exact component={Profile} />
+      <AppRoute path="/new" exact component={New} />
       <AppRoute path="/signin" exact component={Signin} blank />
       <AppRoute path="/signup" exact component={Signup} blank />
     </Switch>
