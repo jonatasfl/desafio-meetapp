@@ -35,14 +35,3 @@ export const Label = styled.label`
 export const UploadInput = styled.input`
   display: none;
 `;
-
-export const TextArea = styled.textarea`
-  width: 100%;
-  font-size: 18px;
-  color: #fff;
-  background-color: rgba(0, 0, 0, 0.3);
-  padding: 20px;
-  margin-bottom: 10px;
-  border: 0;
-  border-radius: 4px;
-`;

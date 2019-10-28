@@ -1,9 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { MdAddCircleOutline, MdPhotoCamera } from 'react-icons/md';
 
-import Input from '~/components/Input';
 import Button from '~/components/Button';
-import { Container, Label, UploadInput, TextArea } from './styles';
+import { Container, Label, UploadInput } from './styles';
 
 export default function New() {
   const [thumbnail, setThumbnail] = useState(null);
@@ -25,10 +24,10 @@ export default function New() {
         <MdPhotoCamera size={54} />
         <h3>Selecionar imagem</h3>
       </Label>
-      <Input placeholder="Título do Meetup" />
-      <TextArea placeholder="Descrição completa" rows={8} />
-      <Input placeholder="Data do Meetup" />
-      <Input placeholder="Localização" />
+      <input placeholder="Título do Meetup" />
+      <textarea placeholder="Descrição completa" rows={8} />
+      <input placeholder="Data do Meetup" />
+      <input placeholder="Localização" />
       <Button type="submit">
         <MdAddCircleOutline />
         Salvar meetup

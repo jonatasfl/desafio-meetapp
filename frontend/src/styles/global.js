@@ -31,6 +31,30 @@ export default createGlobalStyle`
     cursor: pointer;
   }
 
+  input:not([type="radio"]), input:not([type="checkbox"]) {
+    width: 100%;
+    border: 0;
+    height: 50px;
+    font-size: 18px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+  }
+
+  textarea {
+    width: 100%;
+    font-size: 18px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    margin-bottom: 10px;
+    border: 0;
+    border-radius: 4px;
+  }
+
   main {
     margin: 50px 250px;
     /* max-width: 940px; */
