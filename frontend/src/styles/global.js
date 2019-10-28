@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { lighten } from 'polished';
 
 export default createGlobalStyle`
   * {
@@ -61,5 +62,12 @@ export default createGlobalStyle`
     height: 100%;
     min-height: 500px;
     align-self: center;
+  }
+
+  form.with-validation input ~ span {
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px;
+    color: ${lighten(0.3, '#d44059')};
   }
 `;
