@@ -22,7 +22,7 @@ export default function Signup() {
     <Container>
       <Box>
         <span>
-          <img src={logo} alt="MeetApp logo" />
+          <img src={logo} alt="MeetApp" />
         </span>
         <Form className="with-validation" schema={schema}>
           <Input name="name" placeholder="Nome completo" />
