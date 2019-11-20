@@ -22,7 +22,7 @@ Crie uma rota para upload de arquivos que cadastra em uma tabela o caminho e nom
 
 - [x] O usuário deve poder cancelar meetups organizados por ele e que ainda não aconteceram. O cancelamento deve deletar o meetup da base de dados.
 
-### :black_square_button: Inscrição no meetup
+### :white_check_mark: Inscrição no meetup
 
 - [x] O usuário deve poder se inscrever em meetups que não organiza.
 
@@ -32,7 +32,7 @@ Crie uma rota para upload de arquivos que cadastra em uma tabela o caminho e nom
 
 - [x] O usuário não pode se inscrever em dois meetups que acontecem no mesmo horário.
 
-- [ ] Sempre que um usuário se inscrever no meetup, envie um e-mail ao organizador contendo os dados relacionados ao usuário inscrito. O template do e-mail fica por sua conta :)
+- [x] Sempre que um usuário se inscrever no meetup, envie um e-mail ao organizador contendo os dados relacionados ao usuário inscrito. O template do e-mail fica por sua conta :)
 
 ### :black_square_button: Listagem de meetups
 

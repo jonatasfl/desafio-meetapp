@@ -1,6 +1,7 @@
-import { isPast } from 'date-fns';
+import { parseISO, format, isPast } from 'date-fns';
 
 import Meetup from '../models/Meetup';
+import User from '../models/User';
 import MeetupEnrollment from '../models/MeetupEnrollment';
 import Mailer from '../../lib/Mail';
 
@@ -15,7 +16,9 @@ class EnrollmentController {
   }
 
   async store(req, res) {
-    const meetup = await Meetup.findByPk(req.params.meetup);
+    const meetup = await Meetup.findByPk(req.params.meetup, {
+      include: [{ model: User, as: 'user', attributes: ['name', 'email'] }],
+    });
     if (!meetup) return res.status(404).json({ error: 'Meetup not found' });
 
     // O usuário deve poder se inscrever em meetups que não organiza
@@ -58,9 +61,16 @@ class EnrollmentController {
     });
 
     await Mailer.sendMail({
-      to: 'jonatas.lizandro@meioambiente.mg.gov.br',
+      to: `${meetup.user.name} <${meetup.user.email}>`,
       subject: 'Nova Inscrição',
-      text: `O usuário ${req.user_name} se inscreveu em seu Meetup ${meetup.title}`,
+      template: 'enrollment/new',
+      context: {
+        owner: meetup.user.name,
+        user: req.user_name,
+        userEmail: req.user_email,
+        meetupTitle: meetup.title,
+        meetupDate: format(meetup.date, "dd/mm/yyyy 'às' HH:mm'h'"),
+      },
     });
 
     return res.json(enrollment);
