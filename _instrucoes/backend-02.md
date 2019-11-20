@@ -10,13 +10,13 @@ Abaixo estão descritas as funcionalidades que você deve adicionar em sua aplic
 
 Crie uma rota para upload de arquivos que cadastra em uma tabela o caminho e nome do arquivo e retorna todos dados do arquivo cadastrado.
 
-### :black_square_button: Gerenciamento de meetups
+### :white_check_mark: Gerenciamento de meetups
 
 - [x] O usuário pode cadastrar meetups na plataforma com título do meetup, descrição, localização, data e hora e imagem (banner). Todos campos são obrigatórios. Adicione também um campo user_id que armazena o ID do usuário que organiza o evento.
 
 - [x] Não deve ser possível cadastrar meetups com datas que já passaram.
 
-- [ ] O usuário também deve poder editar todos dados de meetups que ainda não aconteceram e que ele é organizador.
+- [x] O usuário também deve poder editar todos dados de meetups que ainda não aconteceram e que ele é organizador.
 
 - [x] Crie uma rota para listar os meetups que são organizados pelo usuário logado.
 

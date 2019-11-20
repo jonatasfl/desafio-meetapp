@@ -41,6 +41,7 @@ routes.post(
   validadeMeetupStore,
   MeetupController.store
 );
+routes.put('/meetups/:id', authMiddleware, MeetupController.update);
 routes.delete('/meetups/:id', authMiddleware, MeetupController.destroy);
 routes.get('/meetups/my', authMiddleware, UserMeetupController.index);
 

@@ -1,4 +1,4 @@
-import { parseISO, isPast } from 'date-fns';
+import { parseISO, isPast, isAfter } from 'date-fns';
 
 import Meetup from '../models/Meetup';
 import File from '../models/File';
@@ -27,6 +27,30 @@ class MeetupController {
 
     const meetup = await Meetup.create(data);
     return res.json(meetup);
+  }
+
+  async update(req, res) {
+    try {
+      const meetup = await Meetup.findByPk(req.params.id);
+      if (meetup.user_id !== req.user_id) {
+        return res
+          .status(401)
+          .json({ error: 'You can only update your own meetups' });
+      }
+
+      if (isAfter(new Date(), parseISO(meetup.date))) {
+        return res.status(400).json({
+          error: 'You cannot change past meetups',
+          data: meetup.date,
+          atual: new Date(),
+        });
+      }
+
+      const data = await meetup.update(req.body);
+      return res.json(data);
+    } catch (e) {
+      return res.status(500).json({ error: 'Failed to update meetup' });
+    }
   }
 
   async destroy(req, res) {
