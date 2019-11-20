@@ -1,4 +1,5 @@
-import { parseISO, isPast } from 'date-fns';
+import { parseISO, format, isPast } from 'date-fns';
+import { Op } from 'sequelize';
 
 import Meetup from '../models/Meetup';
 import File from '../models/File';
@@ -6,8 +7,20 @@ import User from '../models/User';
 
 class MeetupController {
   async index(req, res) {
-    const { page = 1 } = req.query;
+    const { date, page = 1 } = req.query;
+    const where = date
+      ? {
+          date: {
+            [Op.between]: [
+              format(parseISO(date), 'yyyy-MM-dd 00:00:01'),
+              format(parseISO(date), 'yyyy-MM-dd 23:59:59'),
+            ],
+          },
+        }
+      : {};
+
     const meetups = await Meetup.findAll({
+      where,
       limit: 10,
       offset: (page - 1) * 10,
       include: [

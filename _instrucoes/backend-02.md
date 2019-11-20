@@ -34,7 +34,7 @@ Crie uma rota para upload de arquivos que cadastra em uma tabela o caminho e nom
 
 - [x] Sempre que um usuário se inscrever no meetup, envie um e-mail ao organizador contendo os dados relacionados ao usuário inscrito. O template do e-mail fica por sua conta :)
 
-### :black_square_button: Listagem de meetups
+### :white_check_mark: Listagem de meetups
 
 Crie uma rota para listar os meetups com filtro por data (não por hora), os resultados dessa listagem devem vir paginados em 10 itens por página. Abaixo tem um exemplo de chamada para a rota de listagem dos meetups:
 

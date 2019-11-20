@@ -1,4 +1,4 @@
-import { parseISO, format, isPast } from 'date-fns';
+import { format, isPast } from 'date-fns';
 
 import Meetup from '../models/Meetup';
 import User from '../models/User';
@@ -69,7 +69,7 @@ class EnrollmentController {
         user: req.user_name,
         userEmail: req.user_email,
         meetupTitle: meetup.title,
-        meetupDate: format(meetup.date, "dd/mm/yyyy 'às' HH:mm'h'"),
+        meetupDate: format(meetup.date, "dd/MM/yyyy 'às' HH:mm'h'"),
       },
     });
 
