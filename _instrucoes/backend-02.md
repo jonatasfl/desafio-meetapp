@@ -20,7 +20,7 @@ Crie uma rota para upload de arquivos que cadastra em uma tabela o caminho e nom
 
 - [ ] Crie uma rota para listar os meetups que são organizados pelo usuário logado.
 
-- [ ] O usuário deve poder cancelar meetups organizados por ele e que ainda não aconteceram. O cancelamento deve deletar o meetup da base de dados.
+- [x] O usuário deve poder cancelar meetups organizados por ele e que ainda não aconteceram. O cancelamento deve deletar o meetup da base de dados.
 
 ### :black_square_button: Inscrição no meetup
 
