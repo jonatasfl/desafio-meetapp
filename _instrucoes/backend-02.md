@@ -18,7 +18,7 @@ Crie uma rota para upload de arquivos que cadastra em uma tabela o caminho e nom
 
 - [ ] O usuário também deve poder editar todos dados de meetups que ainda não aconteceram e que ele é organizador.
 
-- [ ] Crie uma rota para listar os meetups que são organizados pelo usuário logado.
+- [x] Crie uma rota para listar os meetups que são organizados pelo usuário logado.
 
 - [x] O usuário deve poder cancelar meetups organizados por ele e que ainda não aconteceram. O cancelamento deve deletar o meetup da base de dados.
 
