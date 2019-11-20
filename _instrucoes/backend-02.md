@@ -28,9 +28,9 @@ Crie uma rota para upload de arquivos que cadastra em uma tabela o caminho e nom
 
 - [x] O usuário não pode se inscrever em meetups que já aconteceram.
 
-- [ ] O usuário não pode se inscrever no mesmo meetup duas vezes.
+- [x] O usuário não pode se inscrever no mesmo meetup duas vezes.
 
-- [ ] O usuário não pode se inscrever em dois meetups que acontecem no mesmo horário.
+- [x] O usuário não pode se inscrever em dois meetups que acontecem no mesmo horário.
 
 - [ ] Sempre que um usuário se inscrever no meetup, envie um e-mail ao organizador contendo os dados relacionados ao usuário inscrito. O template do e-mail fica por sua conta :)
 

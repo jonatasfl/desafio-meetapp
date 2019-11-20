@@ -27,18 +27,27 @@ class EnrollmentController {
     if (isPast(meetup.date)) {
       return res
         .status(400)
-        .json({ error: 'You cannot enroll in past meetups' });
+        .json({ error: 'You cannot enroll in past Meetups' });
     }
-    // TODO: O usuário não pode se inscrever em dois meetups que acontecem no mesmo horário
 
-    // User cannot enroll in their own meetup
-    const meetupEnroll = await MeetupEnrollment.findOne({
+    const countSameMeetup = await MeetupEnrollment.count({
       where: { meetup_id: req.params.meetup, user_id: req.user_id },
     });
 
-    if (meetupEnroll) {
+    if (countSameMeetup) {
       return res.status(400).json({
         error: 'You are already enrolled in this Meetup',
+      });
+    }
+
+    const countSameDate = await MeetupEnrollment.count({
+      where: { user_id: req.user_id },
+      include: [{ model: Meetup, as: 'meetup', where: { date: meetup.date } }],
+    });
+
+    if (countSameDate) {
+      return res.status(400).json({
+        error: 'You are already enrolled in a Meetup at the same time',
       });
     }
 
