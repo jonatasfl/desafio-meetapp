@@ -24,9 +24,9 @@ Crie uma rota para upload de arquivos que cadastra em uma tabela o caminho e nom
 
 ### :black_square_button: Inscrição no meetup
 
-- [ ] O usuário deve poder se inscrever em meetups que não organiza.
+- [x] O usuário deve poder se inscrever em meetups que não organiza.
 
-- [ ] O usuário não pode se inscrever em meetups que já aconteceram.
+- [x] O usuário não pode se inscrever em meetups que já aconteceram.
 
 - [ ] O usuário não pode se inscrever no mesmo meetup duas vezes.
 

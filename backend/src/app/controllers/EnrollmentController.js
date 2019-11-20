@@ -1,3 +1,5 @@
+import { isPast } from 'date-fns';
+
 import Meetup from '../models/Meetup';
 import MeetupEnrollment from '../models/MeetupEnrollment';
 
@@ -22,7 +24,11 @@ class EnrollmentController {
         .json({ error: 'You cannot enroll in your own Meetup' });
     }
 
-    // TODO: O usuário não pode se inscrever em meetups que já aconteceram
+    if (isPast(meetup.date)) {
+      return res
+        .status(400)
+        .json({ error: 'You cannot enroll in past meetups' });
+    }
     // TODO: O usuário não pode se inscrever em dois meetups que acontecem no mesmo horário
 
     // User cannot enroll in their own meetup
