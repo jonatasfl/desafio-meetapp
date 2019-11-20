@@ -2,6 +2,7 @@ import { isPast } from 'date-fns';
 
 import Meetup from '../models/Meetup';
 import MeetupEnrollment from '../models/MeetupEnrollment';
+import Mailer from '../../lib/Mail';
 
 class EnrollmentController {
   async index(req, res) {
@@ -54,6 +55,12 @@ class EnrollmentController {
     const enrollment = await MeetupEnrollment.create({
       user_id: req.user_id,
       meetup_id: req.params.meetup,
+    });
+
+    await Mailer.sendMail({
+      to: 'jonatas.lizandro@meioambiente.mg.gov.br',
+      subject: 'Nova Inscrição',
+      text: `O usuário ${req.user_name} se inscreveu em seu Meetup ${meetup.title}`,
     });
 
     return res.json(enrollment);
