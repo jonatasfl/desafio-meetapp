@@ -1,4 +1,4 @@
-import { parseISO, isPast, isAfter } from 'date-fns';
+import { parseISO, isPast } from 'date-fns';
 
 import Meetup from '../models/Meetup';
 import File from '../models/File';
@@ -38,12 +38,10 @@ class MeetupController {
           .json({ error: 'You can only update your own meetups' });
       }
 
-      if (isAfter(new Date(), parseISO(meetup.date))) {
-        return res.status(400).json({
-          error: 'You cannot change past meetups',
-          data: meetup.date,
-          atual: new Date(),
-        });
+      if (isPast(meetup.date)) {
+        return res
+          .status(400)
+          .json({ error: 'You cannot change past meetups' });
       }
 
       const data = await meetup.update(req.body);
