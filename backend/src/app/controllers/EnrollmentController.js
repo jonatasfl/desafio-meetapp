@@ -1,4 +1,5 @@
 import { format, isPast } from 'date-fns';
+import { Op } from 'sequelize';
 
 import Meetup from '../models/Meetup';
 import User from '../models/User';
@@ -9,7 +10,14 @@ class EnrollmentController {
   async index(req, res) {
     const enrollments = await MeetupEnrollment.findAll({
       where: { user_id: req.user_id },
-      include: [{ model: Meetup, as: 'meetup' }],
+      include: [
+        {
+          model: Meetup,
+          as: 'meetup',
+          where: { date: { [Op.gte]: new Date() } },
+        },
+      ],
+      order: [[{ model: Meetup, as: 'meetup' }, 'date', 'ASC']],
     });
 
     return res.json(enrollments);

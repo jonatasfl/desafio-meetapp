@@ -46,8 +46,8 @@ Nesse exemplo, listaremos a página 2 dos meetups que acontecerão no dia 01 de 
 
 Nessa listagem retorne também os dados do organizador.
 
-### :black_square_button: Listagem de inscrições
+### :white_check_mark: Listagem de inscrições
 
-- [ ] Crie uma rota para listar os meetups em que o usuário logado está inscrito.
+- [x] Crie uma rota para listar os meetups em que o usuário logado está inscrito.
 
-- [ ] Liste apenas meetups que ainda não passaram e ordene meetups mais próximos como primeiros da lista.
+- [x] Liste apenas meetups que ainda não passaram e ordene meetups mais próximos como primeiros da lista.
