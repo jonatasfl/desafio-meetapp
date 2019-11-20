@@ -28,6 +28,18 @@ class MeetupController {
     const meetup = await Meetup.create(data);
     return res.json(meetup);
   }
+
+  async destroy(req, res) {
+    const meetup = await Meetup.findByPk(req.params.id);
+    if (meetup.user_id !== req.user_id) {
+      return res
+        .status(401)
+        .json({ error: 'You can only cancel your own meetups' });
+    }
+
+    await meetup.destroy();
+    return res.send();
+  }
 }
 
 export default new MeetupController();

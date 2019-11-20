@@ -40,6 +40,7 @@ routes.post(
   validadeMeetupStore,
   MeetupController.store
 );
+routes.delete('/meetups/:id', authMiddleware, MeetupController.destroy);
 
 // Meetup Enrollments
 routes.get('/meetups/enrollments', authMiddleware, EnrollmentController.index);
