@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { parseISO, format } from 'date-fns';
 import { MdKeyboardArrowRight, MdAddCircleOutline } from 'react-icons/md';
 import ptBR from 'date-fns/locale/pt-BR';
+
+import * as MeetupActions from '~/store/modules/meetups/actions';
 
 import MeetupService from '~/services/api/MeetupService';
 
@@ -10,12 +13,13 @@ import Button from '~/components/Button';
 import { Container, Header, List, ListItem } from './styles';
 
 export default function Dashboard() {
-  const [meetups, setMeetups] = useState([]);
+  const meetups = useSelector(state => state.meetups);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     (async () => {
       const response = await MeetupService.getAll();
-      setMeetups(response.data);
+      dispatch(MeetupActions.addMeetups(response.data));
     })();
   }, []);
 
