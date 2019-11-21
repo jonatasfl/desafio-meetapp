@@ -1,30 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { parseISO, format } from 'date-fns';
 import { MdKeyboardArrowRight, MdAddCircleOutline } from 'react-icons/md';
 import ptBR from 'date-fns/locale/pt-BR';
 
+import MeetupService from '~/services/api/MeetupService';
+
 import Button from '~/components/Button';
 import { Container, Header, List, ListItem } from './styles';
 
-const data = [
-  {
-    id: 1,
-    title: 'Meetup de React Native',
-    date: '2010-10-25 20:00',
-  },
-  {
-    id: 2,
-    title: 'NodeJS Meetup',
-    date: '2010-10-25 20:00',
-  },
-  {
-    id: 3,
-    title: 'Rocketseat Meetup',
-    date: '2010-10-25 20:00',
-  },
-];
-
 export default function Dashboard() {
+  const [meetups, setMeetups] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const response = await MeetupService.getAll();
+      setMeetups(response.data);
+    })();
+  }, []);
+
   return (
     <Container>
       <Header>
@@ -36,7 +29,7 @@ export default function Dashboard() {
       </Header>
 
       <List>
-        {data.map(item => (
+        {meetups.map(item => (
           <ListItem key={item.id}>
             <h3>{item.title}</h3>
             <div>
