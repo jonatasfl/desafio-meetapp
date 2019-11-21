@@ -5,9 +5,9 @@ import { parseISO, format } from 'date-fns';
 import { MdKeyboardArrowRight, MdAddCircleOutline } from 'react-icons/md';
 import ptBR from 'date-fns/locale/pt-BR';
 
-import * as MeetupActions from '~/store/modules/meetups/actions';
+import { addMeetupsRequest } from '~/store/modules/meetups/actions';
 
-import MeetupService from '~/services/api/MeetupService';
+// import MeetupService from '~/services/api/MeetupService';
 
 import Button from '~/components/Button';
 import { Container, Header, List, ListItem } from './styles';
@@ -17,10 +17,7 @@ export default function Dashboard() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async () => {
-      const response = await MeetupService.getAll();
-      dispatch(MeetupActions.addMeetups(response.data));
-    })();
+    dispatch(addMeetupsRequest());
   }, []);
 
   return (

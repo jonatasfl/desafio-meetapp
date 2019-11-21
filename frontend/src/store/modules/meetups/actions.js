@@ -1,6 +1,12 @@
-export function addMeetups(meetups) {
+export function addMeetupsRequest() {
   return {
-    type: 'MEETUPS/ADD',
+    type: 'MEETUPS/ADD_REQUEST',
+  };
+}
+
+export function addMeetupsSuccess(meetups) {
+  return {
+    type: 'MEETUPS/ADD_SUCCESS',
     payload: meetups,
   };
 }
