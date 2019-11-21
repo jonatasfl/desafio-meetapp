@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Form, Input } from '@rocketseat/unform';
+import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 
 import SessionService from '~/services/api/SessionService';
@@ -21,11 +22,11 @@ const schema = Yup.object().shape({
 });
 
 export default function Signin({ history }) {
-  useEffect(() => {
+  /* useEffect(() => {
     if (isAuthenticated) {
       history.push('/');
     }
-  }, []);
+  }); */
 
   async function handleSubmit(data) {
     try {
@@ -33,7 +34,12 @@ export default function Signin({ history }) {
       login(user.data.token, user.data.user);
       history.push('/');
     } catch (e) {
-      alert('Erro ao efetuar login');
+      const { status, data: res } = e.response;
+      if (status === 401) {
+        toast.error(res.error);
+      } else {
+        toast.error('Erro ao tentar logar.');
+      }
     }
   }
 
