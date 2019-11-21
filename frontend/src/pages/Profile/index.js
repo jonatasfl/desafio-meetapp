@@ -1,7 +1,11 @@
 import React from 'react';
 import { MdAddCircleOutline } from 'react-icons/md';
 import { Form, Input } from '@rocketseat/unform';
+import { toast } from 'react-toastify';
 import * as Yup from 'yup';
+
+import { getUserData } from '~/services/auth';
+import UserService from '~/services/api/UserService';
 
 import { Container } from './styles';
 import Button from '~/components/Button';
@@ -20,12 +24,36 @@ const schema = Yup.object().shape({
   ),
 });
 
+const user = getUserData();
+const inititalData = {
+  name: user.name,
+  email: user.email,
+  oldPassword: '',
+  password: '',
+  confirmPassword: '',
+};
+
 export default function Profile() {
+  async function handleSubmit(data, { resetForm }) {
+    try {
+      await UserService.update(data);
+      resetForm({ name: user.name, email: user.email });
+      toast.success('Dados atualizados com sucesso');
+    } catch (e) {
+      toast.error('Erro ao atualizar os dados');
+    }
+  }
+
   return (
     <Container>
-      <Form className="with-validation" schema={schema}>
-        <Input name="name" value="Jonatas Lizandro" />
-        <Input name="email" value="jonatas.exe@gmail.com" />
+      <Form
+        className="with-validation"
+        schema={schema}
+        initialData={inititalData}
+        onSubmit={handleSubmit}
+      >
+        <Input name="name" placeholder="Seu nome" />
+        <Input name="email" placeholder="Seu email" />
         <hr />
         <Input name="oldPassword" type="password" placeholder="Senha atual" />
         <Input name="password" type="password" placeholder="Nova senha" />

@@ -24,6 +24,7 @@ export default createGlobalStyle`
 
   a {
     color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
 
     &:hover {
       color: rgba(255, 255, 255, 0.4);
@@ -50,6 +51,7 @@ export default createGlobalStyle`
   textarea {
     width: 100%;
     font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
     color: #fff;
     background-color: rgba(0, 0, 0, 0.3);
     padding: 20px;
