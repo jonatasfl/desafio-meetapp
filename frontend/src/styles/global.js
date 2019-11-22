@@ -31,6 +31,10 @@ export default createGlobalStyle`
     }
   }
 
+  p {
+    margin-bottom: 25px;
+  }
+
   button {
     cursor: pointer;
   }
