@@ -20,6 +20,10 @@ class App {
       '/files',
       express.static(path.resolve(__dirname, '..', 'tmp', 'uploads'))
     );
+    this.express.use(
+      '/img',
+      express.static(path.resolve(__dirname, '..', 'tmp', 'img'))
+    );
   }
 
   routes() {

@@ -37,6 +37,10 @@ class Mail {
           partialsDir: resolve(viewPath, 'partials'),
           defaultLayout: 'default',
           extname: '.hbs',
+          helpers: {
+            baseUrl: () => process.env.APP_URL,
+            logoUrl: () => `${process.env.APP_URL}/img/logo.svg`,
+          },
         }),
         viewPath,
         extName: '.hbs',
