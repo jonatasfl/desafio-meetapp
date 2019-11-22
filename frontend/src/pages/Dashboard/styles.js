@@ -28,6 +28,10 @@ export const ListItem = styled.li`
     background: rgba(0, 0, 0, 0.2);
   }
 
+  a {
+    color: inherit;
+  }
+
   h3 {
     font-size: 18px;
   }
