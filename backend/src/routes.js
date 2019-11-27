@@ -41,10 +41,10 @@ routes.post(
   validadeMeetupStore,
   MeetupController.store
 );
+routes.get('/meetups/my', authMiddleware, UserMeetupController.index);
 routes.get('/meetups/:id', authMiddleware, MeetupController.view);
 routes.put('/meetups/:id', authMiddleware, MeetupController.update);
 routes.delete('/meetups/:id', authMiddleware, MeetupController.destroy);
-routes.get('/meetups/my', authMiddleware, UserMeetupController.index);
 
 // Meetup Enrollments
 routes.get('/meetups/enrollments', authMiddleware, EnrollmentController.index);

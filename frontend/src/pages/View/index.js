@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { MdCreate, MdDeleteForever, MdEvent, MdPlace } from 'react-icons/md';
+import { parseISO, format } from 'date-fns';
+import { toast } from 'react-toastify';
 
+import ptBR from 'date-fns/locale/pt-BR';
 import {
   Container,
   Header,
@@ -16,13 +20,25 @@ import api from '~/services/api';
 
 export default function View() {
   const [meetup, setMeetup] = useState({});
+  const { id } = useParams();
 
-  async function getData() {}
+  useEffect(() => {
+    getData();
+  }, []);
+
+  async function getData() {
+    try {
+      const response = await api.get(`/meetups/${id}`);
+      setMeetup(response.data);
+    } catch (e) {
+      toast.error('Falha ao obter os dados');
+    }
+  }
 
   return (
     <Container>
       <Header>
-        <Title>React with Redux</Title>
+        <Title>{meetup.title}</Title>
         <Actions>
           <Button color="secondary">
             <MdCreate /> Editar
@@ -32,27 +48,18 @@ export default function View() {
           </Button>
         </Actions>
       </Header>
-      <Banner img="https://pvbps-sambavideos.akamaized.net/account/3303/4/2019-02-25/thumbnail/c7180e04fc65273d0a5bf62eea30fb9c/c7180e04fc65273d0a5bf62eea30fb9c_853x480.jpg" />
-      <Content>
-        <p>
-          Se hoje é o dia das crianças... Ontem eu disse: o dia da criança é o
-          dia da mãe, dos pais, das professoras, mas também é o dia dos animais,
-          sempre que você olha uma criança, há sempre uma figura oculta, que é
-          um cachorro atrás. O que é algo muito importante!
-        </p>
-        <p>
-          Eu dou dinheiro pra minha filha. Eu dou dinheiro pra ela viajar, então
-          é... é... Já vivi muito sem dinheiro, já vivi muito com dinheiro.
-          -Jornalista: Coloca esse dinheiro na poupança que a senhora ganha R$10
-          mil por mês. -Dilma: O que que é R$10 mil?
-        </p>
-      </Content>
+      {meetup.image && <Banner img={meetup.image.url} />}
+      <Content>{meetup.description}</Content>
       <Details>
         <span>
-          <MdEvent /> 24 de novembro, às 20h
+          <MdEvent />{' '}
+          {meetup.date &&
+            format(parseISO(meetup.date), "dd 'de' MMMM', às' HH'h'", {
+              locale: ptBR,
+            })}
         </span>
         <span>
-          <MdPlace /> Av. Cristiano Machado, 5000
+          <MdPlace /> {meetup.location}
         </span>
       </Details>
     </Container>

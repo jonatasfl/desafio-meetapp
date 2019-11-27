@@ -44,7 +44,11 @@ class MeetupController {
 
   async view(req, res) {
     try {
-      const meetup = await Meetup.findByPk(req.params.id);
+      const meetup = await Meetup.findByPk(req.params.id, {
+        include: [
+          { model: File, as: 'image', attributes: ['name', 'path', 'url'] },
+        ],
+      });
       return res.json(meetup);
     } catch (e) {
       return res.status(500).json({ error: 'Failed to get meetup' });
