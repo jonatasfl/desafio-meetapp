@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { MdCreate, MdDeleteForever, MdEvent, MdPlace } from 'react-icons/md';
 
 import {
@@ -12,7 +12,13 @@ import {
 } from './styles';
 import Button from '~/components/Button';
 
+import api from '~/services/api';
+
 export default function View() {
+  const [meetup, setMeetup] = useState({});
+
+  async function getData() {}
+
   return (
     <Container>
       <Header>

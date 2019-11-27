@@ -42,6 +42,15 @@ class MeetupController {
     return res.json(meetup);
   }
 
+  async view(req, res) {
+    try {
+      const meetup = await Meetup.findByPk(req.params.id);
+      return res.json(meetup);
+    } catch (e) {
+      return res.status(500).json({ error: 'Failed to get meetup' });
+    }
+  }
+
   async update(req, res) {
     try {
       const meetup = await Meetup.findByPk(req.params.id);

@@ -23,7 +23,8 @@ export const Banner = styled.div`
   height: 300px;
   border-radius: 4px;
   background-image: ${props => `url(${props.img})`};
-  background-position: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
   margin-bottom: 25px;
 `;
 
