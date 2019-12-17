@@ -26,8 +26,8 @@ const schema = Yup.object().shape({
 
 const user = getUserData();
 const inititalData = {
-  name: user.name,
-  email: user.email,
+  name: user ? user.name : '',
+  email: user ? user.email : '',
   oldPassword: '',
   password: '',
   confirmPassword: '',

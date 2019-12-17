@@ -1,11 +1,11 @@
 import { call, put, all, takeLatest } from 'redux-saga/effects';
 
 import api from '~/services/api';
-import { addMeetupsSuccess } from './actions';
+import { myMeetupsSuccess } from './actions';
 
-function* addMeetups() {
+function* myMeetups() {
   const response = yield call(api.get, '/meetups/my');
-  yield put(addMeetupsSuccess(response.data));
+  yield put(myMeetupsSuccess(response.data));
 }
 
-export default all([takeLatest('MEETUPS/ADD_REQUEST', addMeetups)]);
+export default all([takeLatest('MEETUPS/MY_REQUEST', myMeetups)]);

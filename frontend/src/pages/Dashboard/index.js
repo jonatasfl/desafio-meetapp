@@ -5,7 +5,7 @@ import { parseISO, format } from 'date-fns';
 import { MdKeyboardArrowRight, MdAddCircleOutline } from 'react-icons/md';
 import ptBR from 'date-fns/locale/pt-BR';
 
-import { addMeetupsRequest } from '~/store/modules/meetups/actions';
+import { myMeetupsRequest } from '~/store/modules/meetups/actions';
 
 // import MeetupService from '~/services/api/MeetupService';
 
@@ -17,7 +17,7 @@ export default function Dashboard() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(addMeetupsRequest());
+    dispatch(myMeetupsRequest());
   }, []);
 
   return (

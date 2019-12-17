@@ -1,6 +1,6 @@
 export default function meetups(state = [], action) {
   switch (action.type) {
-    case 'MEETUPS/ADD_SUCCESS':
+    case 'MEETUPS/MY_SUCCESS':
       return [...action.payload];
     default:
       return state;

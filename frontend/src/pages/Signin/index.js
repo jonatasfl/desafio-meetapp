@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import propTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Form, Input } from '@rocketseat/unform';
 import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 
-import SessionService from '~/services/api/SessionService';
-import { login, isAuthenticated } from '~/services/auth';
+import { loginRequest } from '~/store/modules/user/actions';
 
 import Button from '~/components/Button';
 import { Container, Box } from './styles';
@@ -22,6 +22,8 @@ const schema = Yup.object().shape({
 });
 
 export default function Signin({ history }) {
+  const dispatch = useDispatch();
+
   /* useEffect(() => {
     if (isAuthenticated) {
       history.push('/');
@@ -30,8 +32,7 @@ export default function Signin({ history }) {
 
   async function handleSubmit(data) {
     try {
-      const user = await SessionService.authenticate(data.email, data.password);
-      login(user.data.token, user.data.user);
+      dispatch(loginRequest(data.email, data.password));
       history.push('/');
     } catch (e) {
       const { status, data: res } = e.response;
