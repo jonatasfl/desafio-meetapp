@@ -26,4 +26,13 @@ services:
     ports:
       - '5432:5432'
     volumes:
-      - .docker/pg-data:/var/lib/postgresql/data
+      - meetapp-pg:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+volumes:
+  meetapp-pg:
