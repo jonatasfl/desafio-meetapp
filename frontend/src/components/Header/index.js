@@ -1,13 +1,22 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import Button from '~/components/Button';
 import { MainHeader, Container, UserInfo } from './styles';
 import logo from '~/assets/img/logo.svg';
 
+import { logout } from '~/services/auth';
+
 export default function Header() {
   const user = useSelector(state => state.user);
+  const history = useHistory();
+
+  function logoff() {
+    logout();
+    history.push('/login');
+  }
+
   return (
     <MainHeader>
       <Container>
@@ -20,7 +29,9 @@ export default function Header() {
             <span>{user.name}</span>
             <Link to="/profile">Meu perfil</Link>
           </UserInfo>
-          <Button type="button">Sair</Button>
+          <Button type="button" onClick={logoff}>
+            Sair
+          </Button>
         </div>
       </Container>
     </MainHeader>

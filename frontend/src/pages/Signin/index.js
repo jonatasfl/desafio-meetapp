@@ -10,6 +10,7 @@ import { loginRequest } from '~/store/modules/user/actions';
 
 import Button from '~/components/Button';
 import { Container, Box } from './styles';
+import { isAuthenticated } from '~/services/auth';
 import logo from '~/assets/img/logo.svg';
 
 const schema = Yup.object().shape({
@@ -24,11 +25,11 @@ const schema = Yup.object().shape({
 export default function Signin({ history }) {
   const dispatch = useDispatch();
 
-  /* useEffect(() => {
-    if (isAuthenticated) {
+  useEffect(() => {
+    if (isAuthenticated()) {
       history.push('/');
     }
-  }); */
+  }, []);
 
   async function handleSubmit(data) {
     try {
