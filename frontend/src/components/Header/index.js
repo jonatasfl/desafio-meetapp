@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 import Button from '~/components/Button';
 import { MainHeader, Container, UserInfo } from './styles';
@@ -14,6 +15,7 @@ export default function Header() {
 
   function logoff() {
     logout();
+    toast.success('Você saiu do sistema');
     history.push('/login');
   }
 

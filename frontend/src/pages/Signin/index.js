@@ -32,17 +32,8 @@ export default function Signin({ history }) {
   }, []);
 
   async function handleSubmit(data) {
-    try {
-      dispatch(loginRequest(data.email, data.password));
-      history.push('/');
-    } catch (e) {
-      const { status, data: res } = e.response;
-      if (status === 401) {
-        toast.error(res.error);
-      } else {
-        toast.error('Erro ao tentar logar.');
-      }
-    }
+    dispatch(loginRequest(data.email, data.password));
+    history.push('/');
   }
 
   return (
