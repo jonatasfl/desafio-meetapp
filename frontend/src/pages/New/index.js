@@ -1,9 +1,27 @@
 import React, { useState, useMemo } from 'react';
+import * as Yup from 'yup';
 import { MdAddCircleOutline, MdPhotoCamera } from 'react-icons/md';
 import { Input, Textarea } from '@rocketseat/unform';
+import { parse } from 'date-fns';
 
 import Button from '~/components/Button';
 import { Form, Label, UploadInput } from './styles';
+
+const schema = Yup.object().shape({
+  title: Yup.string().required('Informe o título'),
+  description: Yup.string().required('Informe uma descrição'),
+  date: Yup.date('Data inválida')
+    .transform((value, originalValue) => {
+      if (originalValue) {
+        value = parse(originalValue, 'dd/MM/yyyy', new Date());
+        return value;
+      }
+
+      return undefined;
+    })
+    .required('Informe a data'),
+  location: Yup.string().required('Informe a localização'),
+});
 
 export default function New() {
   const [thumbnail, setThumbnail] = useState(null);
@@ -17,7 +35,7 @@ export default function New() {
   }
 
   return (
-    <Form className="with-validation" onSubmit={onSubmit}>
+    <Form className="with-validation" schema={schema} onSubmit={onSubmit}>
       <Label
         style={{ backgroundImage: `url(${preview})` }}
         className={thumbnail ? 'has-thumbnail' : ''}
