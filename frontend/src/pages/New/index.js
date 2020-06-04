@@ -1,8 +1,12 @@
 import React, { useState, useMemo } from 'react';
 import * as Yup from 'yup';
+import { useHistory } from 'react-router-dom';
 import { MdAddCircleOutline, MdPhotoCamera } from 'react-icons/md';
 import { Input, Textarea } from '@rocketseat/unform';
 import { parse } from 'date-fns';
+import { toast } from 'react-toastify';
+
+import api from '~/services/api';
 
 import Button from '~/components/Button';
 import { Form, Label, UploadInput } from './styles';
@@ -25,13 +29,30 @@ const schema = Yup.object().shape({
 
 export default function New() {
   const [thumbnail, setThumbnail] = useState(null);
+  const history = useHistory();
 
   const preview = useMemo(() => {
     return thumbnail ? URL.createObjectURL(thumbnail) : null;
   }, [thumbnail]);
 
-  function onSubmit(data) {
-    console.log(data);
+  async function saveImage() {
+    const formData = new FormData();
+    formData.append('image', thumbnail);
+    const { data } = await api.post('/files', formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
+    return data.id;
+  }
+
+  async function onSubmit(data) {
+    try {
+      const image = await saveImage();
+      const response = await api.post('/meetups', { ...data, image_id: image });
+      toast.success('Meetup cadastrado com sucesso');
+      history.push(`/view/${response.data.id}`);
+    } catch (e) {
+      toast.error('Falha ao cadastrar o meetup');
+    }
   }
 
   return (
