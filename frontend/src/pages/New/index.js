@@ -1,8 +1,9 @@
 import React, { useState, useMemo } from 'react';
 import { MdAddCircleOutline, MdPhotoCamera } from 'react-icons/md';
+import { Input, Textarea } from '@rocketseat/unform';
 
 import Button from '~/components/Button';
-import { Container, Label, UploadInput } from './styles';
+import { Form, Label, UploadInput } from './styles';
 
 export default function New() {
   const [thumbnail, setThumbnail] = useState(null);
@@ -11,8 +12,12 @@ export default function New() {
     return thumbnail ? URL.createObjectURL(thumbnail) : null;
   }, [thumbnail]);
 
+  function onSubmit(data) {
+    console.log(data);
+  }
+
   return (
-    <Container>
+    <Form className="with-validation" onSubmit={onSubmit}>
       <Label
         style={{ backgroundImage: `url(${preview})` }}
         className={thumbnail ? 'has-thumbnail' : ''}
@@ -24,14 +29,14 @@ export default function New() {
         <MdPhotoCamera size={54} />
         <h3>Selecionar imagem</h3>
       </Label>
-      <input placeholder="Título do Meetup" />
-      <textarea placeholder="Descrição completa" rows={8} />
-      <input placeholder="Data do Meetup" />
-      <input placeholder="Localização" />
+      <Input name="title" placeholder="Título do Meetup" />
+      <Textarea name="description" placeholder="Descrição completa" rows={8} />
+      <Input name="date" placeholder="Data do Meetup" />
+      <Input name="location" placeholder="Localização" />
       <Button type="submit">
         <MdAddCircleOutline />
         Salvar meetup
       </Button>
-    </Container>
+    </Form>
   );
 }

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { Form as UnformForm } from '@rocketseat/unform';
 
-export const Container = styled.div`
+export const Form = styled(UnformForm)`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
