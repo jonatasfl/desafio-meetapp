@@ -21,15 +21,23 @@ No arquivo `.env`, configurar os parâmetros como descrito abaixo:
 
 **OBS:** _Caso saiba o que está fazendo, fique à vontade para modificar os parâmetros acima, lembrando de modificar também o arquivo `docker-compose.yml`._
 
-Já possuindo o Docker instalado, execute o seguinte comando:
+Já possuindo o Docker instalado, execute o seguinte comando para iniciar os containers:
 
     docker-compose up -d
+
+Acesse o container da aplicação e execute as migrations e seeds:
+
+    docker exec -it meetapp_server_nodejs sh
+    npm run sequelize db:migrate
+    npm run sequelize db:seed:all
 
 **2 - Local**
 
 Execute os seguintes comandos:
 
     npm install
+    npm run sequelize db:migrate
+    npm run sequelize db:seed:all
     npm run dev
 
 Após executar, o acesso ao backend pode ser feito pela url `http://localhost:3333`
