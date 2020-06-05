@@ -34,19 +34,15 @@ export default function Dashboard() {
 
       <List>
         {meetups.map(item => (
-          <ListItem key={item.id}>
-            <Link to={`/view/${item.id}`}>
-              <h3>{item.title}</h3>
-            </Link>
+          <ListItem key={item.id} to={`/view/${item.id}`}>
+            <h3>{item.title}</h3>
 
             <div>
               {format(parseISO(item.date), "dd 'de' MMMM', às' HH'h'", {
                 locale: ptBR,
               })}
               <span>
-                <Link to={`/view/${item.id}`}>
-                  <MdKeyboardArrowRight size="25px" color="#fff" />
-                </Link>
+                <MdKeyboardArrowRight size="25px" color="#fff" />
               </span>
             </div>
           </ListItem>

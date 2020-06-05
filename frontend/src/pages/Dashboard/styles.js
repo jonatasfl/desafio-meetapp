@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div``;
 
@@ -8,12 +9,12 @@ export const Header = styled.div`
   justify-content: space-between;
 `;
 
-export const List = styled.ul`
+export const List = styled.div`
   list-style: none;
   padding-top: 50px;
 `;
 
-export const ListItem = styled.li`
+export const ListItem = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -23,13 +24,10 @@ export const ListItem = styled.li`
   margin-bottom: 10px;
   padding-left: 30px;
   padding-right: 30px;
+  color: #fff;
 
   &:hover {
     background: rgba(0, 0, 0, 0.2);
-  }
-
-  a {
-    color: inherit;
   }
 
   h3 {
