@@ -15,7 +15,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  max-width: 1440px;
+  max-width: 960px;
 
   div.user-data {
     display: flex;

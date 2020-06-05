@@ -9,7 +9,7 @@ export const Container = styled.div`
 
 export const Content = styled.main`
   width: 100%;
-  max-width: 1440px;
+  max-width: 960px;
   height: 100%;
   min-height: 500px;
 `;
