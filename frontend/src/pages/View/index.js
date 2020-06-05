@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { MdCreate, MdDeleteForever, MdEvent, MdPlace } from 'react-icons/md';
 import { parseISO, format } from 'date-fns';
 import { toast } from 'react-toastify';
@@ -20,6 +20,7 @@ import api from '~/services/api';
 
 export default function View() {
   const [meetup, setMeetup] = useState({});
+  const history = useHistory();
   const { id } = useParams();
 
   useEffect(() => {
@@ -35,6 +36,16 @@ export default function View() {
     }
   }
 
+  async function cancel() {
+    try {
+      await api.delete(`/meetups/${id}`);
+      toast.success('Meetup cancelado com sucesso');
+      history.replace('/');
+    } catch (e) {
+      toast.error('Falha ao cancelar o meetup');
+    }
+  }
+
   return (
     <Container>
       <Header>
@@ -43,7 +54,7 @@ export default function View() {
           <Button color="secondary">
             <MdCreate /> Editar
           </Button>
-          <Button>
+          <Button onClick={cancel}>
             <MdDeleteForever /> Cancelar
           </Button>
         </Actions>
