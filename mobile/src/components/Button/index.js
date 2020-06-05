@@ -1,11 +1,18 @@
-import React from "react";
+import React from 'react';
+import propTypes from 'prop-types';
 
-import { Container, Content } from "./styles";
+import { Container, Content } from './styles';
 
-export default function Button({ children }) {
+function Button({ children }) {
   return (
     <Container>
       <Content>{children}</Content>
     </Container>
   );
 }
+
+Button.propTypes = {
+  children: propTypes.node.isRequired,
+};
+
+export default Button;
