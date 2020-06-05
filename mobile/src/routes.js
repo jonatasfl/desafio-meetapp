@@ -13,11 +13,7 @@ const Tab = createBottomTabNavigator();
 function Tabs() {
   return (
     <Tab.Navigator>
-      <Tab.Screen
-        name="Meetups"
-        component={Meetups}
-        options={{ title: "Meetups" }}
-      />
+      <Tab.Screen name="Meetups" component={Meetups} />
       <Tab.Screen name="Inscricoes" component={Inscricoes} />
       <Tab.Screen name="Meu perfil" component={MeuPerfil} />
     </Tab.Navigator>
@@ -27,7 +23,7 @@ function Tabs() {
 export default function Routes() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Home" component={Tabs} />
       </Stack.Navigator>
     </NavigationContainer>
