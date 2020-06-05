@@ -1,13 +1,16 @@
 import React from 'react';
 import propTypes from 'prop-types';
 
-import Header from './components/Header';
+import { Container, Content } from './styles';
+import Header from '~/components/Header';
 
 function MainLayout({ children }) {
   return (
     <>
       <Header />
-      <main>{children}</main>
+      <Container>
+        <Content>{children}</Content>
+      </Container>
     </>
   );
 }

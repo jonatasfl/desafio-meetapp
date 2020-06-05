@@ -64,14 +64,6 @@ export default createGlobalStyle`
     border-radius: 4px;
   }
 
-  main {
-    margin: 50px 250px;
-    /* max-width: 940px; */
-    height: 100%;
-    min-height: 500px;
-    align-self: center;
-  }
-
   form.with-validation input ~ span {
     display: block;
     margin-bottom: 10px;

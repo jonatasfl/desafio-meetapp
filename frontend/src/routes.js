@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import propTypes from 'prop-types';
 
-import MainLayout from '~/MainLayout';
+import MainLayout from '~/Layout';
 
 import Dashboard from '~/pages/Dashboard';
 import Profile from '~/pages/Profile';

@@ -5,15 +5,17 @@ export const MainHeader = styled.header`
   height: 92px;
   background-color: rgba(0, 0, 0, 0.3);
   color: #fff;
-  padding: 5px 250px;
+  padding: 5px 50px;
   display: flex;
   align-items: center;
+  justify-content: center;
 `;
 
 export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
+  max-width: 1440px;
 
   div.user-data {
     display: flex;
