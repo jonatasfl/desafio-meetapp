@@ -1,20 +1,17 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StatusBar } from "react-native";
 
 import Routes from "./routes";
 
 export default function App() {
   return (
     <>
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor="transparent"
+        translucent
+      />
       <Routes />
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
