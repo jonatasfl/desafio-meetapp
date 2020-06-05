@@ -1,15 +1,38 @@
 import React from "react";
 import { Text } from "react-native";
-import Header from "../../components/Header";
 import GradientBg from "../../components/GradientBg";
-import { Container } from "./styles";
+
+import {
+  Container,
+  Card,
+  CardThumb,
+  CardBody,
+  CardTitle,
+  CardContent,
+  Icon,
+} from "./styles";
+
+import thumb from "../../assets/thumb.jpg";
 
 export default function Meetups() {
   return (
     <Container>
       <GradientBg colors={["#22202C", "#402845"]} />
-      <Header />
-      <Text>Página Inicial</Text>
+      <Card>
+        <CardThumb source={thumb} />
+        <CardBody>
+          <CardTitle>Meetup de React Native</CardTitle>
+          <CardContent>
+            <Icon name="event" /> 24 de Junho, às 20h
+          </CardContent>
+          <CardContent>
+            <Icon name="location-on" /> Rua Guilherme Gembala, 260
+          </CardContent>
+          <CardContent>
+            <Icon name="person" /> Organizador: Diego Fernandes
+          </CardContent>
+        </CardBody>
+      </Card>
     </Container>
   );
 }
