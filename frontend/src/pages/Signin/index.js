@@ -33,7 +33,6 @@ export default function Signin({ history }) {
 
   async function handleSubmit(data) {
     dispatch(loginRequest(data.email, data.password));
-    history.push('/');
   }
 
   return (
