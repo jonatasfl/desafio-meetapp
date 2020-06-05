@@ -1,9 +1,10 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
+import axios from 'axios';
 import * as Yup from 'yup';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { MdAddCircleOutline, MdPhotoCamera } from 'react-icons/md';
 import { Input, Textarea } from '@rocketseat/unform';
-import { parse } from 'date-fns';
+import { parse, parseISO, format } from 'date-fns';
 import { toast } from 'react-toastify';
 
 import api from '~/services/api';
@@ -17,7 +18,7 @@ const schema = Yup.object().shape({
   date: Yup.date('Data inválida')
     .transform((value, originalValue) => {
       if (originalValue) {
-        value = parse(originalValue, 'dd/MM/yyyy', new Date());
+        value = parse(originalValue, 'dd/MM/yyyy HH:mm', new Date());
         return value;
       }
 
@@ -28,15 +29,56 @@ const schema = Yup.object().shape({
 });
 
 export default function New() {
+  const [inititalData, setInitialData] = useState({
+    title: '',
+    description: '',
+    date: undefined,
+    location: '',
+    image_id: null,
+  });
   const [thumbnail, setThumbnail] = useState(null);
+  const [savedThumbnail, setSavedThumbnail] = useState(null);
   const history = useHistory();
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (id) {
+      getData();
+    }
+  }, [id]);
 
   const preview = useMemo(() => {
     return thumbnail ? URL.createObjectURL(thumbnail) : null;
   }, [thumbnail]);
 
+  async function getData() {
+    try {
+      const { data } = await api.get(`/meetups/${id}`);
+      const { data: image } = await axios.get(data.image.url, {
+        responseType: 'blob',
+      });
+      setSavedThumbnail(image);
+      setThumbnail(image);
+      setInitialData({
+        title: data.title,
+        description: data.description,
+        date: format(parseISO(data.date), 'dd/MM/yyyy HH:mm'),
+        location: data.location,
+        image_id: data.image_id,
+      });
+    } catch (e) {
+      toast.error('Falha ao obter os dados do meetup');
+    }
+  }
+
   async function saveImage() {
     const formData = new FormData();
+
+    // If is editing and thumb are not changed
+    if (id && thumbnail === savedThumbnail) {
+      return inititalData.image_id;
+    }
+
     formData.append('image', thumbnail);
     const { data } = await api.post('/files', formData, {
       headers: { 'Content-Type': 'multipart/form-data' },
@@ -47,16 +89,23 @@ export default function New() {
   async function onSubmit(data) {
     try {
       const image = await saveImage();
-      const response = await api.post('/meetups', { ...data, image_id: image });
-      toast.success('Meetup cadastrado com sucesso');
+      const response = id
+        ? await api.put(`/meetups/${id}`, { ...data, image_id: image })
+        : await api.post('/meetups', { ...data, image_id: image });
+      toast.success('Meetup salvo com sucesso');
       history.push(`/view/${response.data.id}`);
     } catch (e) {
-      toast.error('Falha ao cadastrar o meetup');
+      toast.error('Falha ao salvar o meetup');
     }
   }
 
   return (
-    <Form className="with-validation" schema={schema} onSubmit={onSubmit}>
+    <Form
+      className="with-validation"
+      schema={schema}
+      onSubmit={onSubmit}
+      initialData={inititalData}
+    >
       <Label
         style={{ backgroundImage: `url(${preview})` }}
         className={thumbnail ? 'has-thumbnail' : ''}

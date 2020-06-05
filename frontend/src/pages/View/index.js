@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, Link } from 'react-router-dom';
 import { MdCreate, MdDeleteForever, MdEvent, MdPlace } from 'react-icons/md';
 import { parseISO, format } from 'date-fns';
 import { toast } from 'react-toastify';
@@ -51,9 +51,12 @@ export default function View() {
       <Header>
         <Title>{meetup.title}</Title>
         <Actions>
-          <Button color="secondary">
-            <MdCreate /> Editar
-          </Button>
+          <Link to={`/edit/${id}`}>
+            <Button color="secondary">
+              <MdCreate /> Editar
+            </Button>
+          </Link>
+
           <Button onClick={cancel}>
             <MdDeleteForever /> Cancelar
           </Button>

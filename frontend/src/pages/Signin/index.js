@@ -3,7 +3,6 @@ import propTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Form, Input } from '@rocketseat/unform';
-import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 
 import { loginRequest } from '~/store/modules/user/actions';

@@ -19,6 +19,7 @@ export default function Routes() {
       <AppRoute path="/" exact component={Dashboard} auth />
       <AppRoute path="/profile" exact component={Profile} auth />
       <AppRoute path="/new" exact component={New} auth />
+      <AppRoute path="/edit/:id" exact component={New} auth />
       <AppRoute path="/view/:id" exact component={View} auth />
       <AppRoute path="/login" exact component={Signin} blank />
       <AppRoute path="/signup" exact component={Signup} blank />
