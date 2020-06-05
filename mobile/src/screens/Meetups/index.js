@@ -2,6 +2,7 @@ import React from "react";
 import { Text } from "react-native";
 import GradientBg from "../../components/GradientBg";
 
+import Button from "../../components/Button";
 import {
   Container,
   Card,
@@ -31,6 +32,10 @@ export default function Meetups() {
           <CardContent>
             <Icon name="person" /> Organizador: Diego Fernandes
           </CardContent>
+
+          <Button>
+            <Text>Realizar inscrição</Text>
+          </Button>
         </CardBody>
       </Card>
     </Container>
