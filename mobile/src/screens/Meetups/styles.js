@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { MaterialIcons } from "@expo/vector-icons";
+import styled from 'styled-components';
+import { MaterialIcons } from '@expo/vector-icons';
 
 export const Container = styled.View`
   flex: 1;

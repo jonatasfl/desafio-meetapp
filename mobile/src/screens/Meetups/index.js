@@ -1,8 +1,8 @@
-import React from "react";
-import { Text } from "react-native";
-import GradientBg from "../../components/GradientBg";
+import React from 'react';
+import { Text } from 'react-native';
+import GradientBg from '../../components/GradientBg';
 
-import Button from "../../components/Button";
+import Button from '../../components/Button';
 import {
   Container,
   Card,
@@ -11,14 +11,14 @@ import {
   CardTitle,
   CardContent,
   Icon,
-} from "./styles";
+} from './styles';
 
-import thumb from "../../assets/thumb.jpg";
+import thumb from '../../assets/thumb.jpg';
 
 export default function Meetups() {
   return (
     <Container>
-      <GradientBg colors={["#22202C", "#402845"]} />
+      <GradientBg colors={['#22202C', '#402845']} />
       <Card>
         <CardThumb source={thumb} />
         <CardBody>
