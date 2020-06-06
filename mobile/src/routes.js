@@ -1,24 +1,53 @@
-import React from "react";
-import { StatusBar } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import React from 'react';
+import { StatusBar } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import Meetups from "./screens/Meetups";
-import Inscricoes from "./screens/Inscricoes";
-import MeuPerfil from "./screens/MeuPerfil";
-import Header from "./components/Header";
-import GradientBg from "./components/GradientBg";
+import Meetups from './screens/Meetups';
+import Inscricoes from './screens/Inscricoes';
+import MeuPerfil from './screens/MeuPerfil';
+import Header from './components/Header';
+import GradientBg from './components/GradientBg';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function Tabs() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          switch (route.name) {
+            case 'Meetups':
+              return <MaterialIcons name="list" size={size} color={color} />;
+            case 'Inscricoes':
+              return (
+                <MaterialIcons name="local-offer" size={size} color={color} />
+              );
+            case 'Perfil':
+              return <MaterialIcons name="person" size={size} color={color} />;
+          }
+        },
+      })}
+      tabBarOptions={{
+        activeTintColor: '#fff',
+        inactiveTintColor: '#999',
+        style: {
+          height: 64,
+          backgroundColor: '#2B1A2F',
+          borderTopWidth: 0,
+        },
+      }}
+    >
       <Tab.Screen name="Meetups" component={Meetups} />
-      <Tab.Screen name="Inscricoes" component={Inscricoes} />
-      <Tab.Screen name="Meu perfil" component={MeuPerfil} />
+      <Tab.Screen
+        name="Inscricoes"
+        component={Inscricoes}
+        options={{ title: 'Inscrições' }}
+      />
+      <Tab.Screen name="Perfil" component={MeuPerfil} />
     </Tab.Navigator>
   );
 }
@@ -31,7 +60,7 @@ function HomeLayout() {
         backgroundColor="rgba(0,0,0,0.3)"
         translucent
       />
-      <GradientBg colors={["#22202C", "#402845"]} />
+      <GradientBg colors={['#22202C', '#402845']} />
       <Header />
       <Tabs />
     </>

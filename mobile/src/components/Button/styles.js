@@ -9,6 +9,7 @@ export const Container = styled(RectButton)`
   background: #f94d6a;
   border-radius: 4px;
   margin-top: 15px;
+  opacity: ${({ loading }) => (loading ? 0.7 : 1)};
 `;
 
 export const Content = styled.Text`

@@ -24,5 +24,6 @@ module.exports = {
         extensions: ['.jsx', '.js'],
       },
     ],
+    'default-case': 'off',
   },
 };
