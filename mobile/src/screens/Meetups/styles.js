@@ -1,17 +1,21 @@
 import styled from 'styled-components';
 import { MaterialIcons } from '@expo/vector-icons';
 
-export const Container = styled.View`
+export const Container = styled.SafeAreaView`
   flex: 1;
   align-items: center;
   padding: 0 20px;
+`;
+
+export const ContentArea = styled.ScrollView`
+  padding-top: 50px;
 `;
 
 export const Card = styled.View`
   width: 100%;
   border-radius: 4px;
   background: #fff;
-  margin-top: 50px;
+  margin-bottom: 20px;
 `;
 
 export const CardThumb = styled.ImageBackground`

@@ -25,5 +25,6 @@ module.exports = {
       },
     ],
     'default-case': 'off',
+    'no-use-before-define': 'off',
   },
 };
