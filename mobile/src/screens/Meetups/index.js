@@ -27,7 +27,7 @@ export default function Meetups() {
   async function getMeetups() {
     const { data } = await api.get('/meetups');
     setMeetups(data);
-    // setLoading(false);
+    setLoading(false);
   }
 
   return (
@@ -37,9 +37,9 @@ export default function Meetups() {
         <FlatList
           data={meetups}
           contentContainerStyle={{ paddingBottom: 50 }}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => String(item.id)}
           renderItem={({ item }) => (
-            <Card key={item.id}>
+            <Card>
               <CardThumb
                 source={{
                   uri: `http://192.168.0.111:3333/files/${item.image.path}`,
