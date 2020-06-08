@@ -8,7 +8,7 @@ import Button from '../../components/Button';
 import { Container, Logo, TextLink } from './styles';
 
 import logo from '../../assets/logo.png';
-// import { loginRequest } from '../../store/modules/user/actions';
+import { loginRequest } from '../../store/modules/user/actions';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -22,7 +22,8 @@ export default function Login() {
   }
 
   async function handleSubmit() {
-    console.log('Enviou!', email, password);
+    dispatch(loginRequest(email, password));
+    navigation.navigate('Home');
   }
 
   return (

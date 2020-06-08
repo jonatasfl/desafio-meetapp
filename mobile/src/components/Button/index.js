@@ -4,9 +4,9 @@ import { ActivityIndicator } from 'react-native';
 
 import { Container, Content } from './styles';
 
-function Button({ height, loading, children }) {
+function Button({ height, loading, children, ...props }) {
   return (
-    <Container height={height}>
+    <Container height={height} {...props}>
       {loading ? (
         <ActivityIndicator color="#fff" />
       ) : (
