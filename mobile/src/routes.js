@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Login from './screens/Login';
+import Cadastro from './screens/Cadastro';
 import Meetups from './screens/Meetups';
 import Inscricoes from './screens/Inscricoes';
 import MeuPerfil from './screens/MeuPerfil';
@@ -73,6 +74,7 @@ export default function Routes() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Cadastro" component={Cadastro} />
         <Stack.Screen name="Home" component={HomeLayout} />
       </Stack.Navigator>
     </NavigationContainer>
