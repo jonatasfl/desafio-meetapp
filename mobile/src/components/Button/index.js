@@ -4,9 +4,9 @@ import { ActivityIndicator } from 'react-native';
 
 import { Container, Content } from './styles';
 
-function Button({ loading, children }) {
+function Button({ height, loading, children }) {
   return (
-    <Container>
+    <Container height={height}>
       {loading ? (
         <ActivityIndicator color="#fff" />
       ) : (
@@ -17,12 +17,14 @@ function Button({ loading, children }) {
 }
 
 Button.propTypes = {
+  height: propTypes.number,
   loading: propTypes.bool,
   children: propTypes.node.isRequired,
 };
 
 Button.defaultProps = {
   loading: false,
+  height: 40,
 };
 
 export default Button;
