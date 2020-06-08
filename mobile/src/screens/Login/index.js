@@ -23,8 +23,13 @@ export default function Login() {
         placeholder="Digite seu e-mail"
         keyboardType="email-address"
         autoCapitalize="none"
+        returnKeyType="next"
       />
-      <Input placeholder="Sua senha secreta" secureTextEntry />
+      <Input
+        placeholder="Sua senha secreta"
+        secureTextEntry
+        returnKeyType="send"
+      />
       <Button height={50}>Entrar</Button>
       <TextLink onPress={goToCadastro}>Criar conta grátis</TextLink>
     </Container>
