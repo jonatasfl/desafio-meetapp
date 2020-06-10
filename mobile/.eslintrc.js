@@ -28,4 +28,12 @@ module.exports = {
     'default-case': 'off',
     'no-use-before-define': 'off',
   },
+  settings: {
+    'import/resolver': {
+      'babel-plugin-root-import': {
+        rootPathPrefix: '~',
+        rootPathSuffix: 'src',
+      },
+    },
+  },
 };
