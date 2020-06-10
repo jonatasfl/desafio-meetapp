@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Text, FlatList } from 'react-native';
 import SkeletonContent from 'react-native-skeleton-content';
 
-import api from '../../services/api';
-import GradientBg from '../../components/GradientBg';
-import Button from '../../components/Button';
+import api from '~/services/api';
+import GradientBg from '~/components/GradientBg';
+import Button from '~/components/Button';
 import {
   Container,
   ContentArea,

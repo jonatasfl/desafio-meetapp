@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 
-import GradientBg from '../../components/GradientBg';
-import Input from '../../components/Input';
-import Button from '../../components/Button';
+import GradientBg from '~/components/GradientBg';
+import Input from '~/components/Input';
+import Button from '~/components/Button';
 import { Container, Logo, TextLink } from './styles';
 
-import logo from '../../assets/logo.png';
-import { loginRequest } from '../../store/modules/user/actions';
+import logo from '~/assets/logo.png';
+import { loginRequest } from '~/store/modules/user/actions';
 
 export default function Login() {
   const [email, setEmail] = useState('');

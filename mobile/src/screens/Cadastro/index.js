@@ -1,12 +1,12 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 
-import GradientBg from '../../components/GradientBg';
-import Input from '../../components/Input';
-import Button from '../../components/Button';
+import GradientBg from '~/components/GradientBg';
+import Input from '~/components/Input';
+import Button from '~/components/Button';
 import { Container, Logo, TextLink } from './styles';
 
-import logo from '../../assets/logo.png';
+import logo from '~/assets/logo.png';
 
 export default function Cadastro() {
   const navigation = useNavigation();
