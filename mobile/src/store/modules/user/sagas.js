@@ -5,7 +5,7 @@ import { Alert } from 'react-native';
 import api from '../../../services/api';
 import { loginSuccess } from './actions';
 
-import { login, getToken, getUserData } from '../../../services/auth';
+import { login } from '../../../services/auth';
 
 function* loginSaga(action) {
   const { email, password } = action.payload;

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { Text, FlatList } from 'react-native';
-import SkeletonContent from 'react-native-skeleton-content';
+import ShimmerPlaceholder from 'react-native-shimmer-placeholder';
 
 import api from '~/services/api';
 import GradientBg from '~/components/GradientBg';
@@ -20,14 +19,10 @@ import {
 export default function Meetups() {
   const [loading, setLoading] = useState(true);
   const [meetups, setMeetups] = useState([]);
-  const user = useSelector((state) => state.user);
 
   useEffect(() => {
     getMeetups();
   }, []);
-  useEffect(() => {
-    console.log('user state', user);
-  }, [user]);
 
   async function getMeetups() {
     const { data } = await api.get('/meetups');
