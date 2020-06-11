@@ -5,9 +5,12 @@ export function loginRequest(email, password) {
   };
 }
 
-export function loginSuccess(userdata) {
+export function loginSuccess(token, userdata) {
   return {
     type: 'USER/LOGIN_SUCCESS',
-    payload: userdata,
+    payload: {
+      token,
+      userdata,
+    },
   };
 }

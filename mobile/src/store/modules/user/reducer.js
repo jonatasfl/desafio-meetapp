@@ -1,6 +1,7 @@
-import { getUserData } from '../../../services/auth';
-
-const INITIAL_STATE = getUserData() || [];
+const INITIAL_STATE = {
+  token: '',
+  userdata: {},
+};
 
 export default function reducer(state = INITIAL_STATE, action) {
   switch (action.type) {

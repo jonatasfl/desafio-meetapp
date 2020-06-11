@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
 import { Alert } from 'react-native';
 
 import GradientBg from '~/components/GradientBg';
@@ -7,7 +8,7 @@ import Input from '~/components/Input';
 import Button from '~/components/Button';
 
 import api from '~/services/api';
-import { getUserData, logout } from '~/services/auth';
+import { logout } from '~/services/auth';
 
 import { Container, Form, Divider } from './styles';
 
@@ -18,16 +19,17 @@ export default function MeuPerfil() {
   const [oldPassword, setOldPassword] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const user = useSelector((state) => state.user);
 
   const navigation = useNavigation();
 
   useEffect(() => {
     (async () => {
-      const { email: userEmail, name: userName } = await getUserData();
+      const { email: userEmail, name: userName } = user.userdata;
       setName(userName);
       setEmail(userEmail);
     })();
-  }, []);
+  }, [user]);
 
   async function onSubmit() {
     try {
