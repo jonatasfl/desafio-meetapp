@@ -1,6 +1,10 @@
 import styled from 'styled-components';
+import { Platform } from 'react-native';
 
-export const Container = styled.View`
+export const Container = styled.KeyboardAvoidingView.attrs({
+  enabled: Platform.OS === 'ios',
+  behavior: 'padding',
+})`
   flex: 1;
   align-items: center;
   padding: 0 20px;
@@ -9,6 +13,7 @@ export const Container = styled.View`
 export const Form = styled.View`
   width: 100%;
   margin-top: 20px;
+  justify-content: flex-end;
 `;
 
 export const Divider = styled.View`
