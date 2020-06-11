@@ -69,7 +69,12 @@ export default function MeuPerfil() {
           secureTextEntry
           returnKeyType="send"
         />
-        <Button height={50} onPress={onSubmit} loading={sending}>
+        <Button
+          color="secondary"
+          height={50}
+          onPress={onSubmit}
+          loading={sending}
+        >
           Salvar perfil
         </Button>
         <Button height={50}>Sair do Meetapp</Button>
