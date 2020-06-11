@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Text, FlatList } from 'react-native';
+import { parseISO, format } from 'date-fns';
+import ptBR from 'date-fns/locale/pt-BR';
 import ShimmerPlaceholder from 'react-native-shimmer-placeholder';
 
 import api from '~/services/api';
@@ -48,7 +50,10 @@ export default function Meetups() {
               <CardBody>
                 <CardTitle>{item.title}</CardTitle>
                 <CardContent>
-                  <Icon name="event" /> 24 de Junho, às 20h
+                  <Icon name="event" />{' '}
+                  {format(parseISO(item.date), "dd 'de' MMMM', às' HH'h'", {
+                    locale: ptBR,
+                  })}
                 </CardContent>
                 <CardContent>
                   <Icon name="location-on" /> {item.location}
