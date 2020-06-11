@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { Alert } from 'react-native';
 
 import GradientBg from '~/components/GradientBg';
 import Input from '~/components/Input';
 import Button from '~/components/Button';
 
-import { getUserData } from '~/services/auth';
-
 import api from '~/services/api';
+import { getUserData, logout } from '~/services/auth';
+
 import { Container, Form, Divider } from './styles';
 
 export default function MeuPerfil() {
@@ -17,6 +18,8 @@ export default function MeuPerfil() {
   const [oldPassword, setOldPassword] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
+  const navigation = useNavigation();
 
   useEffect(() => {
     (async () => {
@@ -42,6 +45,11 @@ export default function MeuPerfil() {
       Alert.alert('Houve uma falha ao alterar os dados', e.response.data.error);
       setSending(false);
     }
+  }
+
+  async function logoff() {
+    await logout();
+    navigation.navigate('Login');
   }
 
   return (
@@ -77,7 +85,9 @@ export default function MeuPerfil() {
         >
           Salvar perfil
         </Button>
-        <Button height={50}>Sair do Meetapp</Button>
+        <Button height={50} onPress={logoff}>
+          Sair do Meetapp
+        </Button>
       </Form>
     </Container>
   );
