@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 
@@ -16,6 +16,7 @@ export default function Login() {
 
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const passwordRef = useRef();
 
   function goToCadastro() {
     navigation.navigate('Cadastro');
@@ -32,18 +33,21 @@ export default function Login() {
       <Logo source={logo} />
       <Input
         placeholder="Digite seu e-mail"
+        value={email}
+        onChangeText={setEmail}
         keyboardType="email-address"
         autoCapitalize="none"
         returnKeyType="next"
-        value={email}
-        onChangeText={setEmail}
+        onSubmitEditing={() => passwordRef.current.focus()}
       />
       <Input
+        ref={passwordRef}
         placeholder="Sua senha secreta"
         secureTextEntry
-        returnKeyType="send"
         value={password}
         onChangeText={setPassword}
+        returnKeyType="send"
+        onSubmitEditing={handleSubmit}
       />
       <Button height={50} onPress={handleSubmit}>
         Entrar
