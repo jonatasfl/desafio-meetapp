@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -16,6 +16,8 @@ export default function Cadastro() {
   const [password, setPassword] = useState('');
 
   const navigation = useNavigation();
+  const emailRef = useRef();
+  const passwordRef = useRef();
 
   function goToLogin() {
     navigation.navigate('Login');
@@ -35,19 +37,30 @@ export default function Cadastro() {
     <Container>
       <GradientBg colors={['#22202C', '#402845']} />
       <Logo source={logo} />
-      <Input placeholder="Nome completo" value={name} onChangeText={setName} />
       <Input
+        placeholder="Nome completo"
+        value={name}
+        onChangeText={setName}
+        returnKeyType="next"
+        onSubmitEditing={() => emailRef.current.focus()}
+      />
+      <Input
+        ref={emailRef}
         placeholder="Digite seu e-mail"
         keyboardType="email-address"
         autoCapitalize="none"
         value={email}
         onChangeText={setEmail}
+        returnKeyType="next"
+        onSubmitEditing={() => passwordRef.current.focus()}
       />
       <Input
+        ref={passwordRef}
         placeholder="Sua senha secreta"
         secureTextEntry
         value={password}
         onChangeText={setPassword}
+        onSubmitEditing={onSubmit}
       />
       <Button height={50} onPress={onSubmit}>
         Criar conta
