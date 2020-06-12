@@ -43,6 +43,7 @@ export default function Meetups() {
           renderItem={({ item }) => (
             <Card>
               <CardThumb
+                // TODO: utilizar link da api
                 source={{
                   uri: `http://192.168.0.111:3333/files/${item.image.path}`,
                 }}
