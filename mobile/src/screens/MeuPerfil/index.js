@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import { Alert } from 'react-native';
@@ -22,6 +22,10 @@ export default function MeuPerfil() {
   const user = useSelector((state) => state.user);
 
   const navigation = useNavigation();
+  const emailRef = useRef();
+  const oldPasswordRef = useRef();
+  const passwordRef = useRef();
+  const confirmPasswordRef = useRef();
 
   useEffect(() => {
     (async () => {
@@ -58,26 +62,43 @@ export default function MeuPerfil() {
     <Container>
       <GradientBg colors={['#22202C', '#402845']} />
       <Form>
-        <Input value={name} onChangeText={setName} />
-        <Input value={email} onChangeText={setEmail} />
+        <Input
+          value={name}
+          onChangeText={setName}
+          returnKeyType="next"
+          onSubmitEditing={() => emailRef.current.focus()}
+        />
+        <Input
+          ref={emailRef}
+          value={email}
+          onChangeText={setEmail}
+          returnKeyType="next"
+          onSubmitEditing={() => oldPasswordRef.current.focus()}
+        />
         <Divider />
         <Input
+          ref={oldPasswordRef}
           placeholder="Senha atual"
           onChangeText={setOldPassword}
           secureTextEntry
           returnKeyType="next"
+          onSubmitEditing={() => passwordRef.current.focus()}
         />
         <Input
+          ref={passwordRef}
           placeholder="Nova senha"
           onChangeText={setPassword}
           secureTextEntry
           returnKeyType="next"
+          onSubmitEditing={() => confirmPasswordRef.current.focus()}
         />
         <Input
+          ref={confirmPasswordRef}
           placeholder="Confirmação de senha"
           onChangeText={setConfirmPassword}
           secureTextEntry
           returnKeyType="send"
+          onSubmitEditing={onSubmit}
         />
         <Button
           color="secondary"
