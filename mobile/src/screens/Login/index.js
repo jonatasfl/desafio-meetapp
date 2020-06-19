@@ -23,8 +23,7 @@ export default function Login() {
   }
 
   async function handleSubmit() {
-    dispatch(loginRequest(email, password));
-    navigation.navigate('Home');
+    dispatch(loginRequest(email, password, navigation));
   }
 
   return (

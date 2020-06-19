@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { StatusBar } from 'react-native';
 
-import Routes from './src/routes';
+import Home from './src/Home';
 import store from './src/store';
 
 export default function App() {
@@ -13,7 +13,7 @@ export default function App() {
         backgroundColor="transparent"
         translucent
       />
-      <Routes />
+      <Home />
     </Provider>
   );
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import propTypes from 'prop-types';
 import { StatusBar } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
@@ -69,10 +70,13 @@ function HomeLayout() {
   );
 }
 
-export default function Routes() {
+function Routes({ isSigned }) {
+  // TODO: Remover console.log
+  console.log('RE-RENDER: ROUTES');
+  console.log('IS SIGNED:', isSigned);
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={isSigned ? "Home" : "Login"}>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Cadastro" component={Cadastro} />
         <Stack.Screen name="Home" component={HomeLayout} />
@@ -80,3 +84,13 @@ export default function Routes() {
     </NavigationContainer>
   );
 }
+
+Routes.propTypes = {
+  isSigned: propTypes.bool
+};
+
+Routes.defaultProps = {
+  isSigned: false
+}
+
+export default Routes;
