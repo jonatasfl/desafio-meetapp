@@ -2,7 +2,7 @@ version: '3'
 
 services:
   server:
-    container_name: meetapp_server_nodejs
+    container_name: meetapp_server
     restart: always
     build: '.'
     volumes:
@@ -17,7 +17,7 @@ services:
 
   postgresqldb:
     image: postgres:12.0-alpine
-    container_name: meetapp_db_postgresql
+    container_name: meetapp_db
     restart: always
     environment:
       POSTGRES_DB: meetapp
