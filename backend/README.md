@@ -37,7 +37,7 @@ Já possuindo o Docker instalado, execute o seguinte comando para iniciar os con
 
 Acesse o container da aplicação e execute as migrations e seeds:
 
-    docker exec -it meetapp_server_nodejs sh
+    docker exec -it meetapp_server sh
     npm run sequelize db:migrate
     npm run sequelize db:seed:all
 
