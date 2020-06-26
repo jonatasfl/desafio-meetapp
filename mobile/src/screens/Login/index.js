@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 
@@ -8,6 +8,7 @@ import Button from '~/components/Button';
 import { Container, Logo, TextLink } from './styles';
 
 import logo from '~/assets/logo.png';
+import { isAuthenticated } from '~/services/auth'
 import { loginRequest } from '~/store/modules/user/actions';
 
 export default function Login() {
@@ -17,6 +18,14 @@ export default function Login() {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const passwordRef = useRef();
+
+  useEffect(() => {
+    (async () => {
+      if (await isAuthenticated()) {
+        navigation.navigate("Home")
+      }
+    })()
+  }, []);
 
   function goToCadastro() {
     navigation.navigate('Cadastro');

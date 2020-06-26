@@ -1,7 +1,7 @@
-export function loginRequest(email, password) {
+export function loginRequest(email, password, navigation) {
   return {
     type: 'USER/LOGIN_REQUEST',
-    payload: { email, password },
+    payload: { email, password, navigation },
   };
 }
 
@@ -13,4 +13,10 @@ export function loginSuccess(token, userdata) {
       userdata,
     },
   };
+}
+
+export function clearUser() {
+  return {
+    type: 'USER/CLEAR',
+  }
 }

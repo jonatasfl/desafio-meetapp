@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Text, FlatList } from 'react-native';
 import { parseISO, format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
+// TODO: remover shimmer-placeholder
 import ShimmerPlaceholder from 'react-native-shimmer-placeholder';
 
 import api from '~/services/api';

@@ -71,9 +71,6 @@ function HomeLayout() {
 }
 
 function Routes({ isSigned }) {
-  // TODO: Remover console.log
-  console.log('RE-RENDER: ROUTES');
-  console.log('IS SIGNED:', isSigned);
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={isSigned ? "Home" : "Login"}>

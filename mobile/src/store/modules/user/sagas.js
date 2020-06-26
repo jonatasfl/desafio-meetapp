@@ -7,12 +7,13 @@ import { loginSuccess } from './actions';
 import { login } from '../../../services/auth';
 
 function* loginSaga(action) {
-  const { email, password } = action.payload;
+  const { email, password, navigation } = action.payload;
 
   try {
     const { data } = yield call(api.post, '/session', { email, password });
     yield call(login, data.token, data.user);
     yield put(loginSuccess(data.token, data.user));
+    navigation.navigate("Home");
   } catch (e) {
     const { status, data: res } = e.response;
     Alert.alert('Falha ao logar', res.error);

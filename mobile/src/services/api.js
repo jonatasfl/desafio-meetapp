@@ -13,6 +13,9 @@ api.interceptors.request.use(async (config) => {
   }
 
   return config;
+}, error => {
+  console.log('Falha na requisição: ', error);
+  Promise.reject(error)
 });
 
 export default api;
