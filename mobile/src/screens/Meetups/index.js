@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CalendarStrip from 'react-native-calendar-strip';
-import { Text, FlatList } from 'react-native';
+import { Text, FlatList, Alert } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 import { parseISO, format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 // TODO: remover shimmer-placeholder
@@ -30,9 +31,24 @@ export default function Meetups() {
   }, []);
 
   async function getMeetups() {
-    const { data } = await api.get('/meetups');
+    const date = new Date();
+    const { data } = await api.get(`/meetups?date=${date}`);
     setMeetups(data);
     setLoading(false);
+  }
+
+  async function enrollment(meetup) {
+    setLoading(true);
+
+    try {
+      await api.post(`/meetups/enrollments/${meetup}`);
+      Alert.alert('Ok', 'Inscrição realizada com sucesso!');
+      setLoading(false);
+    } catch (e) {
+      const { data } = e.response;
+      Alert.alert('Erro', data.error);
+      setLoading(false);
+    }
   }
 
   async function onDateSelected(date) {
@@ -53,8 +69,8 @@ export default function Meetups() {
           dateNameStyle={{ color: '#fff' }}
           highlightDateNumberStyle={{ color: '#f94d6a' }}
           highlightDateNameStyle={{ color: '#f94d6a' }}
-          leftSelector={<Icon name="chevron-left" />}
-          rightSelector={<Icon name="chevron-right" />}
+          leftSelector={<MaterialIcons name="chevron-left" color="#fff" size={28} />}
+          rightSelector={<MaterialIcons name="chevron-right" color="#fff" size={28} />}
           iconContainer={{ flex: 0.1 }}
           locale={{
             name: 'pt-br',
@@ -97,7 +113,7 @@ export default function Meetups() {
                   <Icon name="person" /> Organizador: {item.user.name}
                 </CardContent>
 
-                <Button>
+                <Button onPress={() => enrollment(item.id)} loading={loading}>
                   <Text>Realizar inscrição</Text>
                 </Button>
               </CardBody>
