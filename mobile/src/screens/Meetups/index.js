@@ -10,17 +10,9 @@ import ShimmerPlaceholder from 'react-native-shimmer-placeholder';
 import api from '~/services/api';
 import GradientBg from '~/components/GradientBg';
 import Button from '~/components/Button';
-import {
-  Container,
-  ContentArea,
-  NoData,
-  Card,
-  CardThumb,
-  CardBody,
-  CardTitle,
-  CardContent,
-  Icon,
-} from './styles';
+import { Card, CardThumb, CardBody, CardTitle, CardContent } from '~/components/Card';
+
+import { Container, ContentArea, NoData, Icon } from './styles';
 
 export default function Meetups() {
   const [loading, setLoading] = useState(true);
