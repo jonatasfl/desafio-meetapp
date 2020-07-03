@@ -76,7 +76,7 @@ export default function Inscricoes() {
                 </CardContent>
 
                 <Button
-                  onPress={() => Alert.alert(String(item.id))}
+                  onPress={() => cancelEnrollment(item.id)}
                   loading={loading}
                 >
                   <Text>Cancelar inscrição</Text>
