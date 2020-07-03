@@ -44,7 +44,7 @@ class EnrollmentController {
     if (isPast(meetup.date)) {
       return res
         .status(400)
-        .json({ error: 'You cannot enroll in past Meetups' });
+        .json({ error: 'You cannot enroll in past meetups' });
     }
 
     const countSameMeetup = await MeetupEnrollment.count({
@@ -53,7 +53,7 @@ class EnrollmentController {
 
     if (countSameMeetup) {
       return res.status(400).json({
-        error: 'You are already enrolled in this Meetup',
+        error: 'You are already enrolled in this meetup',
       });
     }
 
@@ -87,6 +87,25 @@ class EnrollmentController {
     });
 
     return res.json(enrollment);
+  }
+
+  async destroy(req, res) {
+    const enrollment = await MeetupEnrollment.findByPk(req.params.id);
+
+    if (enrollment.user_id !== req.user_id) {
+      return res
+        .status(401)
+        .json({ error: 'You can only cancel your own enrollments' });
+    }
+
+    if (isPast(enrollment.meetup.date)) {
+      return res
+        .status(400)
+        .json({ error: 'You cannot cancel enrollment in past meetups' });
+    }
+
+    await enrollment.destroy();
+    return res.send();
   }
 }
 
