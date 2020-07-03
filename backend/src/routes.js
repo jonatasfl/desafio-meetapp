@@ -33,6 +33,14 @@ routes.post('/users', validadeUserStore, UserController.store);
 routes.put('/users', authMiddleware, validadeUserUpdate, UserController.update);
 routes.delete('/users/:id', authMiddleware, UserController.destroy);
 
+// Meetup Enrollments
+routes.get('/meetups/enrollments', authMiddleware, EnrollmentController.index);
+routes.post(
+  '/meetups/enrollments/:meetup',
+  authMiddleware,
+  EnrollmentController.store
+);
+
 // Meetups
 routes.get('/meetups', authMiddleware, MeetupController.index);
 routes.post(
@@ -45,14 +53,6 @@ routes.get('/meetups/my', authMiddleware, UserMeetupController.index);
 routes.get('/meetups/:id', authMiddleware, MeetupController.view);
 routes.put('/meetups/:id', authMiddleware, MeetupController.update);
 routes.delete('/meetups/:id', authMiddleware, MeetupController.destroy);
-
-// Meetup Enrollments
-routes.get('/meetups/enrollments', authMiddleware, EnrollmentController.index);
-routes.post(
-  '/meetups/enrollments/:meetup',
-  authMiddleware,
-  EnrollmentController.store
-);
 
 // Files
 routes.post(
