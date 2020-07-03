@@ -10,13 +10,13 @@ class MeetupController {
     const { date, page = 1 } = req.query;
     const where = date
       ? {
-          date: {
-            [Op.between]: [
-              format(parseISO(date), 'yyyy-MM-dd 00:00:01'),
-              format(parseISO(date), 'yyyy-MM-dd 23:59:59'),
-            ],
-          },
-        }
+        date: {
+          [Op.between]: [
+            format(parseISO(date), 'yyyy-MM-dd 00:00:01'),
+            format(parseISO(date), 'yyyy-MM-dd 23:59:59'),
+          ],
+        },
+      }
       : {};
 
     const meetups = await Meetup.findAll({

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, FlatList } from 'react-native';
+import { Text, FlatList, Alert } from 'react-native';
 import { parseISO, format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 
@@ -25,9 +25,23 @@ export default function Inscricoes() {
   }, []);
 
   async function getEnrollments() {
+    setLoading(true);
     const { data } = await api.get('/meetups/enrollments');
     setEnrollments(data);
     setLoading(false);
+  }
+
+  async function cancelEnrollment(enrollment) {
+    setLoading(true);
+    try {
+      await api.delete(`/meetups/enrollments/${enrollment}`);
+      Alert.alert('Ok', 'Inscrição cancelada com sucesso!');
+      getEnrollments();
+    } catch (e) {
+      const { data } = e.response;
+      Alert.alert('Erro', data.error);
+      setLoading(false);
+    }
   }
 
   return (
@@ -61,7 +75,10 @@ export default function Inscricoes() {
                   <Icon name="person" /> Organizador: {item.meetup.user.name}
                 </CardContent>
 
-                <Button loading={loading}>
+                <Button
+                  onPress={() => Alert.alert(String(item.id))}
+                  loading={loading}
+                >
                   <Text>Cancelar inscrição</Text>
                 </Button>
               </CardBody>

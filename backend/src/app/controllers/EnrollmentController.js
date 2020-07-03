@@ -90,22 +90,30 @@ class EnrollmentController {
   }
 
   async destroy(req, res) {
-    const enrollment = await MeetupEnrollment.findByPk(req.params.id);
+    try {
+      const enrollment = await MeetupEnrollment.findByPk(req.params.id, {
+        include: [{ model: Meetup, as: 'meetup' }],
+      });
 
-    if (enrollment.user_id !== req.user_id) {
+      if (enrollment.user_id !== req.user_id) {
+        return res
+          .status(401)
+          .json({ error: 'You can only cancel your own enrollments' });
+      }
+
+      if (isPast(enrollment.meetup.date)) {
+        return res
+          .status(400)
+          .json({ error: 'You cannot cancel enrollment in past meetups' });
+      }
+
+      await enrollment.destroy();
+      return res.send();
+    } catch (e) {
       return res
-        .status(401)
-        .json({ error: 'You can only cancel your own enrollments' });
+        .status(500)
+        .json({ error: 'Failed to cancel enrollment', details: e });
     }
-
-    if (isPast(enrollment.meetup.date)) {
-      return res
-        .status(400)
-        .json({ error: 'You cannot cancel enrollment in past meetups' });
-    }
-
-    await enrollment.destroy();
-    return res.send();
   }
 }
 
