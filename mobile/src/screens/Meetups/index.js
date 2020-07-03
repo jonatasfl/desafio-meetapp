@@ -100,12 +100,7 @@ export default function Meetups() {
           keyExtractor={(item) => String(item.id)}
           renderItem={({ item }) => (
             <Card>
-              <CardThumb
-                // TODO: utilizar link da api
-                source={{
-                  uri: `http://192.168.0.111:3333/files/${item.image.path}`,
-                }}
-              />
+              <CardThumb source={{ uri: item.image.url }} />
               <CardBody>
                 <CardTitle>{item.title}</CardTitle>
                 <CardContent>

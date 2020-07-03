@@ -41,12 +41,7 @@ export default function Inscricoes() {
           keyExtractor={(item) => String(item.id)}
           renderItem={({ item }) => (
             <Card>
-              {/* <CardThumb
-                // TODO: utilizar link da api
-                source={{
-                  uri: `http://192.168.0.111:3333/files/${item.image.path}`,
-                }}
-              /> */}
+              <CardThumb source={{ uri: item.meetup.image.url }} />
               <CardBody>
                 <CardTitle>{item.meetup.title}</CardTitle>
                 <CardContent>
@@ -63,7 +58,7 @@ export default function Inscricoes() {
                   <Icon name="location-on" /> {item.meetup.location}
                 </CardContent>
                 <CardContent>
-                  <Icon name="person" /> Organizador: {item.meetup.user_id}
+                  <Icon name="person" /> Organizador: {item.meetup.user.name}
                 </CardContent>
 
                 <Button loading={loading}>
