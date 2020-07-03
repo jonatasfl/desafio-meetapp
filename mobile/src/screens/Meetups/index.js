@@ -12,6 +12,7 @@ import Button from '~/components/Button';
 import {
   Container,
   ContentArea,
+  NoData,
   Card,
   CardThumb,
   CardBody,
@@ -66,7 +67,9 @@ export default function Meetups() {
           }}
           onDateSelected={onDateSelected}
         />
-
+        {!meetups.length && (
+          <NoData>Nenhum meetup na data selecionada</NoData>
+        )}
         <FlatList
           data={meetups}
           contentContainerStyle={{ paddingBottom: 50 }}

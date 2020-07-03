@@ -13,6 +13,13 @@ export const ContentArea = styled.ScrollView`
   padding-top: 50px;
 `;
 
+export const NoData = styled.Text`
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+  padding-top: 20px;
+`;
+
 export const Card = styled.View`
   width: 100%;
   border-radius: 4px;
