@@ -3,6 +3,7 @@ import { Op } from 'sequelize';
 
 import Meetup from '../models/Meetup';
 import User from '../models/User';
+import File from '../models/File';
 import MeetupEnrollment from '../models/MeetupEnrollment';
 import Mailer from '../../lib/Mail';
 
@@ -15,6 +16,10 @@ class EnrollmentController {
           model: Meetup,
           as: 'meetup',
           where: { date: { [Op.gte]: new Date() } },
+          include: [
+            { model: File, as: 'image', attributes: ['name', 'path', 'url'] },
+            { model: User, as: 'user', attributes: ['name', 'email'] },
+          ],
         },
       ],
       order: [[{ model: Meetup, as: 'meetup' }, 'date', 'ASC']],
