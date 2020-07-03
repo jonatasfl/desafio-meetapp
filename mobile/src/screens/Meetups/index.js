@@ -10,7 +10,13 @@ import ShimmerPlaceholder from 'react-native-shimmer-placeholder';
 import api from '~/services/api';
 import GradientBg from '~/components/GradientBg';
 import Button from '~/components/Button';
-import { Card, CardThumb, CardBody, CardTitle, CardContent } from '~/components/Card';
+import {
+  Card,
+  CardThumb,
+  CardBody,
+  CardTitle,
+  CardContent,
+} from '~/components/Card';
 
 import { Container, ContentArea, NoData, Icon } from './styles';
 
@@ -44,7 +50,9 @@ export default function Meetups() {
   }
 
   async function onDateSelected(date) {
-    const { data } = await api.get(`/meetups?date=${date.format('YYYY-MM-DD')}`);
+    const { data } = await api.get(
+      `/meetups?date=${date.format('YYYY-MM-DD')}`
+    );
     setMeetups(data);
     setLoading(false);
   }
@@ -61,23 +69,31 @@ export default function Meetups() {
           dateNameStyle={{ color: '#fff' }}
           highlightDateNumberStyle={{ color: '#f94d6a' }}
           highlightDateNameStyle={{ color: '#f94d6a' }}
-          leftSelector={<MaterialIcons name="chevron-left" color="#fff" size={28} />}
-          rightSelector={<MaterialIcons name="chevron-right" color="#fff" size={28} />}
+          leftSelector={
+            <MaterialIcons name="chevron-left" color="#fff" size={28} />
+          }
+          rightSelector={
+            <MaterialIcons name="chevron-right" color="#fff" size={28} />
+          }
           iconContainer={{ flex: 0.1 }}
           locale={{
             name: 'pt-br',
             config: {
-              months: 'Janeiro_Fevereiro_Março_Abril_Maio_Junho_Julho_Agosto_Setembro_Outubro_Novembro_Dezembro'.split('_'),
-              monthsShort: 'Jan_Fev_Mar_Abr_Mai_Jun_Jul_Ago_Set_Out_Nov_Dez'.split('_'),
-              weekDays: 'Domingo_Segunda_Terça_Quarta_Quinta_Sexta_Sábado'.split('_'),
-              weekdaysShort: 'Dom_Seg_Ter_Qua_Qui_Sex_Sab'.split('_')
-            }
+              months: 'Janeiro_Fevereiro_Março_Abril_Maio_Junho_Julho_Agosto_Setembro_Outubro_Novembro_Dezembro'.split(
+                '_'
+              ),
+              monthsShort: 'Jan_Fev_Mar_Abr_Mai_Jun_Jul_Ago_Set_Out_Nov_Dez'.split(
+                '_'
+              ),
+              weekDays: 'Domingo_Segunda_Terça_Quarta_Quinta_Sexta_Sábado'.split(
+                '_'
+              ),
+              weekdaysShort: 'Dom_Seg_Ter_Qua_Qui_Sex_Sab'.split('_'),
+            },
           }}
           onDateSelected={onDateSelected}
         />
-        {!meetups.length && (
-          <NoData>Nenhum meetup na data selecionada</NoData>
-        )}
+        {!meetups.length && <NoData>Nenhum meetup na data selecionada</NoData>}
         <FlatList
           data={meetups}
           contentContainerStyle={{ paddingBottom: 50 }}
