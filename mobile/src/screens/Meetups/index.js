@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import CalendarStrip from 'react-native-calendar-strip';
-import { Text, FlatList, Alert } from 'react-native';
+import { Text, FlatList, Alert, RefreshControl } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { parseISO, format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
-// TODO: remover shimmer-placeholder
-import ShimmerPlaceholder from 'react-native-shimmer-placeholder';
 
 import api from '~/services/api';
 import GradientBg from '~/components/GradientBg';
@@ -22,6 +20,7 @@ import { Container, ContentArea, NoData, Icon } from './styles';
 
 export default function Meetups() {
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
   const [meetups, setMeetups] = useState([]);
 
   useEffect(() => {
@@ -57,10 +56,20 @@ export default function Meetups() {
     setLoading(false);
   }
 
+  async function onRefresh() {
+    setRefreshing(true);
+    await getMeetups();
+    setRefreshing(false);
+  }
+
   return (
     <Container>
       <GradientBg colors={['#22202C', '#402845']} />
-      <ContentArea>
+      <ContentArea
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
         <CalendarStrip
           style={{ height: 80 }}
           selectedDate={Date.now()}
