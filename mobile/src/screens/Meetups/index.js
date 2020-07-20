@@ -21,22 +21,27 @@ import { Container, ContentArea, NoData, Icon } from './styles';
 export default function Meetups() {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
+  const [date, setDate] = useState(new Date());
   const [meetups, setMeetups] = useState([]);
 
   useEffect(() => {
     getMeetups();
-  }, []);
+  }, [date]);
 
   async function getMeetups() {
-    const date = new Date();
-    const { data } = await api.get(`/meetups?date=${date}`);
-    setMeetups(data);
-    setLoading(false);
+    setLoading(true);
+    try {
+      const { data } = await api.get(`/meetups?date=${date}`);
+      setMeetups(data);
+      setLoading(false);
+    } catch (e) {
+      setLoading(false);
+      console.log('ERRO:', e.response.data);
+    }
   }
 
   async function enrollment(meetup) {
     setLoading(true);
-
     try {
       await api.post(`/meetups/enrollments/${meetup}`);
       Alert.alert('Ok', 'Inscrição realizada com sucesso!');
@@ -48,17 +53,9 @@ export default function Meetups() {
     }
   }
 
-  async function onDateSelected(date) {
-    const { data } = await api.get(
-      `/meetups?date=${date.format('YYYY-MM-DD')}`
-    );
-    setMeetups(data);
-    setLoading(false);
-  }
-
   async function onRefresh() {
     setRefreshing(true);
-    await getMeetups();
+    getMeetups();
     setRefreshing(false);
   }
 
@@ -100,7 +97,9 @@ export default function Meetups() {
               weekdaysShort: 'Dom_Seg_Ter_Qua_Qui_Sex_Sab'.split('_'),
             },
           }}
-          onDateSelected={onDateSelected}
+          onDateSelected={(selectedDate) =>
+            setDate(selectedDate.format('YYYY-MM-DD'))
+          }
         />
         {!meetups.length && <NoData>Nenhum meetup na data selecionada</NoData>}
         <FlatList
