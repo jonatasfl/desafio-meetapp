@@ -127,7 +127,7 @@ export default function Meetups() {
 
                 <Button
                   onPress={() => enrollment(item.id)}
-                  loading={sending === item.id}
+                  loading={!!sending && sending === item.id}
                 >
                   <Text>Realizar inscrição</Text>
                 </Button>
