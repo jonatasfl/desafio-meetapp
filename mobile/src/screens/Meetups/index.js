@@ -20,6 +20,7 @@ import { Container, ContentArea, NoData, Icon } from './styles';
 
 export default function Meetups() {
   const [loading, setLoading] = useState(true);
+  const [sending, setSending] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
   const [date, setDate] = useState(new Date());
   const [meetups, setMeetups] = useState([]);
@@ -41,15 +42,15 @@ export default function Meetups() {
   }
 
   async function enrollment(meetup) {
-    setLoading(true);
+    setSending(meetup);
     try {
       await api.post(`/meetups/enrollments/${meetup}`);
       Alert.alert('Ok', 'Inscrição realizada com sucesso!');
-      setLoading(false);
+      setSending(null);
     } catch (e) {
       const { data } = e.response;
       Alert.alert('Erro', data.error);
-      setLoading(false);
+      setSending(null);
     }
   }
 
@@ -124,7 +125,10 @@ export default function Meetups() {
                   <Icon name="person" /> Organizador: {item.user.name}
                 </CardContent>
 
-                <Button onPress={() => enrollment(item.id)} loading={loading}>
+                <Button
+                  onPress={() => enrollment(item.id)}
+                  loading={sending === item.id}
+                >
                   <Text>Realizar inscrição</Text>
                 </Button>
               </CardBody>
