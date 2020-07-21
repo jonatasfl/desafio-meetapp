@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, FlatList, Alert } from 'react-native';
+import { Text, FlatList, Alert, RefreshControl } from 'react-native';
 import { parseISO, format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 
@@ -18,6 +18,7 @@ import { Container, ContentArea, NoData, Icon } from './styles';
 
 export default function Inscricoes() {
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
   const [enrollments, setEnrollments] = useState([]);
 
   useEffect(() => {
@@ -44,10 +45,20 @@ export default function Inscricoes() {
     }
   }
 
+  function onRefresh() {
+    setRefreshing(true);
+    getEnrollments();
+    setRefreshing(false);
+  }
+
   return (
     <Container>
       <GradientBg colors={['#22202C', '#402845']} />
-      <ContentArea>
+      <ContentArea
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
         {!enrollments.length && <NoData>Nenhuma inscrição ativa</NoData>}
         <FlatList
           data={enrollments}

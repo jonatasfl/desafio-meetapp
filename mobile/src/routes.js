@@ -41,6 +41,8 @@ function Tabs() {
           height: 64,
           backgroundColor: '#2B1A2F',
           borderTopWidth: 0,
+          paddingTop: 10,
+          paddingBottom: 10,
         },
       }}
     >
@@ -73,7 +75,10 @@ function HomeLayout() {
 function Routes({ isSigned }) {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={isSigned ? "Home" : "Login"}>
+      <Stack.Navigator
+        screenOptions={{ headerShown: false }}
+        initialRouteName={isSigned ? 'Home' : 'Login'}
+      >
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Cadastro" component={Cadastro} />
         <Stack.Screen name="Home" component={HomeLayout} />
@@ -83,11 +88,11 @@ function Routes({ isSigned }) {
 }
 
 Routes.propTypes = {
-  isSigned: propTypes.bool
+  isSigned: propTypes.bool,
 };
 
 Routes.defaultProps = {
-  isSigned: false
-}
+  isSigned: false,
+};
 
 export default Routes;
